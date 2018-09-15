@@ -1,0 +1,24 @@
+<div>
+    <form #insulinForm="ngForm" (ngSubmit)="onSubmit(insulinForm)">
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="insulinService.selectedInsulin.name"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="brand" #brand="ngModel" [(ngModel)]="insulinService.selectedInsulin.brand"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="type" #type="ngModel" [(ngModel)]="insulinService.selectedInsulin.type" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="ml" #ml="ngModel" [(ngModel)]="insulinService.selectedInsulin.ml"/>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Add Insulin" class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>

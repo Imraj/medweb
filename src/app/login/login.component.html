@@ -1,0 +1,27 @@
+<div class="col col-md-6 offset-3" id="page">
+
+  <form  #loginForm="ngForm" (ngSubmit)="authenticateUser(loginForm)">
+      <div class="form-group">
+          <input type="text" #email="ngModel" name="email" [(ngModel)]="login.email" class="form-control" placeholder="Email Address"/>
+      </div>
+
+      <div class="form-group">
+        <input type="password" #pwd="ngModel" name="pwd" [(ngModel)]="login.pwd" class="form-control" placeholder="Password"/>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-primary"/>
+      </div>
+
+      <div>
+          <span class="pull-left">
+            <a href="/register">New Account</a>
+          </span>
+          <span class="pull-right">
+              <a href="/forgotpassword">Forgot Password ?</a>
+          </span>
+      </div>
+
+  </form>
+
+</div>

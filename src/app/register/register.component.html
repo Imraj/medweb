@@ -1,0 +1,31 @@
+<div class="col col-md-6 offset-3" id="page">
+
+  <form #regForm="ngForm" (ngSubmit)="createAccount(regForm)">
+
+      <div class="form-group">
+          <input type="text" #fullname="ngModel" name="fullname" [(ngModel)]="reg.fullname" class="form-control" placeholder="Fullname"/>
+      </div>
+
+      <div class="form-group">
+          <input type="text" #email="ngModel" name="email" [(ngModel)]="reg.email" class="form-control" placeholder="Email Address"/>
+      </div>
+
+      <div class="form-group">
+        <input type="password" #pwd="ngModel" name="pwd" [(ngModel)]="reg.pwd" class="form-control" placeholder="Password"/>
+      </div>
+
+      <div class="form-group">
+          <input type="password" #pwd2="ngModel" name="pwd2" [(ngModel)]="reg.pwd2" class="form-control" placeholder="Password Again"/>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Create Account"  class="btn btn-primary"/>
+      </div>
+
+  </form>
+
+  <div class="text-center">
+    <a href="/login">Login to account</a>
+  </div>
+
+</div>

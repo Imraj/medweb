@@ -1,0 +1,27 @@
+<div>
+
+  <form #subForm="ngForm" (ngSubmit)="subscribeNow(subForm)">
+
+      <div class="form-group">
+        <input type="text" name="cardno" #cardno="ngModel" ngModel="sub.cardno" placeholder="Card number" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <input type="text" name="cardyear" #cardyear="ngModel" ngModel="sub.cardyear" placeholder="Card Year" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <input type="text" name="cardmonth" #cardmonth="ngModel" ngModel="sub.cardmonth" placeholder="Card Month" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <input type="text" name="cardcvv" #cardcvv="ngModel" ngModel="sub.cardcvv" placeholder="Card CVV" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Subscribe" class="btn btn-primary"/>
+      </div>
+
+  </form>
+
+</div>

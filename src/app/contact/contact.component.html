@@ -1,0 +1,24 @@
+<div id="page">
+  <form #contactForm="ngForm" (ngSubmit)="sendMessage(contactForm)">
+
+      <div class="form-group">
+        <select class="form-control" ([ngModel])="contact.type">
+          <option>Type</option>
+          <option></option>
+        </select>
+      </div>
+
+      <div class="form-group">
+          <input type="text" class="form-control" name="subject" #subject="ngModel" placeholder="Subject" [(ngModel)]="contact.subject" />
+      </div>
+
+      <div class="form-group">
+          <textarea class="form-control" name="message" #message="ngModel" placeholder="Message" [(ngModel)]="contact.message"></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Send Message" />
+      </div>
+
+  </form>
+</div>

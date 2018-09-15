@@ -1,0 +1,17 @@
+
+<table class="table table-sm table-hover">
+    <tr *ngFor="let faq of faqList">
+
+        <td>{{ faq.question }}</td>
+        <td>{{ faq.answer }}</td>
+        <td>
+            <a class="btn">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="btn">
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+
+    </tr>
+</table>

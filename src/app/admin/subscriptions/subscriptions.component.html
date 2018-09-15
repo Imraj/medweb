@@ -1,0 +1,16 @@
+<div class="container">
+
+    <table class="table table-sm table-hover">
+        <tr *ngFor="let sub of subList">
+          <td>{{ sub.name }}</td>
+          <td>{{ sub.email }}</td>
+          <td>{{ sub.date }}</td>
+          <td>
+              <a class="btn">
+                  <i class="fa fa-trash"></i>
+              </a>
+          </td>
+        </tr>
+    </table>
+
+</div>

@@ -1,0 +1,17 @@
+<h6 class="text-center"> Med Info </h6>
+
+<table class="table table-sm table-hover">
+    <tr *ngFor="let med of medinfoList">
+        <td>{{ med.medName }}}</td>
+        <td>{{ med.medType }}</td>
+        <td>{{ med.medDate }}</td>
+        <td>
+            <a class="btn">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="btn">
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+</table>
