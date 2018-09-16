@@ -9,8 +9,12 @@ import { Router  } from "@angular/router"
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  showSidebar = true;
+  
+  constructor(private router: Router) { 
+    
+  }
+  
   ngOnInit() {
 
   }

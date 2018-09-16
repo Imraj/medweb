@@ -1,10 +1,11 @@
-<div id="page">
+<div id="page" class="col col-6 offset-3">
   <form #contactForm="ngForm" (ngSubmit)="sendMessage(contactForm)">
 
       <div class="form-group">
-        <select class="form-control" ([ngModel])="contact.type">
-          <option>Type</option>
-          <option></option>
+        <select class="form-control" [(ngModel)]="contact.type">
+          <option>App Feedback</option>
+          <option>Medication not listed</option>
+          <option>Other</option>
         </select>
       </div>
 

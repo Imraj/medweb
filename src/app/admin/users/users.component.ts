@@ -17,14 +17,14 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(){
     var x = this.userService.getData()
-    x.snapshotChanges().subscribe(item=>{
-      this.userList = []
-      item.forEach(element=>{
-         var y = element.payload.toJSON()
-         y["key"] = element.key
-         this.userList.push(y as User)
-      })
-    })
+    // x.snapshotChanges().subscribe(item=>{
+    //   this.userList = []
+    //   item.forEach(element=>{
+    //      var y = element.payload.toJSON()
+    //      y["key"] = element.key
+    //      this.userList.push(y as User)
+    //   })
+    // })
   }
 
 }

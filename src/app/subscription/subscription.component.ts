@@ -14,7 +14,7 @@ export class SubscriptionComponent implements OnInit {
 
   }
 
-  subscribeNow(subForm){
+  subscribeNow(subForm: NgForm){
 
     let cardno = subForm.value.cardno
     let cardyear = subForm.value.cardyear

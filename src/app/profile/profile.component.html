@@ -1,4 +1,4 @@
-<div id="page">
+<div id="page" class="col col-6 offset-3">
 
     <form #profileForm="ngForm" (onSubmit)="updateProfile()">
 
@@ -7,6 +7,7 @@
         </div>
 
         <div class="form-group">
+            <label>Select Gender</label>
             <select class="form-control" name="gender" #gender="ngModel" [(ngModel)]="profile.gender">
                 <option>Select Gender</option>
                 <option value="male"> Male </option>
@@ -16,7 +17,7 @@
         </div>
 
         <div class="form-group">
-            <input type="text" name="username" #username="ngModel" [(ngModel)]="profile.username" placeholder="Username" class="form-control" />
+            <input type="text" name="username" #username="ngModel" placeholder="Username" [(ngModel)]="profile.username" class="form-control">
         </div>
         
         <div class="form-group">
@@ -47,6 +48,6 @@
 
     </form>
 
-    <button class="btn btn-primary-outline btn-full">Change Password</button>
+    <button class="btn btn-primary-outline btn-full" (click)="navToChangepwd()">Change Password</button>
 
 </div>

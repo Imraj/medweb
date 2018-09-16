@@ -16,7 +16,6 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { ContactComponent } from './contact/contact.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
-import { MedexpirationComponent } from './medexpiration/medexpiration.component';
 import { InsulinguideComponent } from './insulinguide/insulinguide.component';
 import { RecallsComponent } from './recalls/recalls.component';
 import { ExpirationdateComponent } from './expirationdate/expirationdate.component';
@@ -50,6 +49,14 @@ import { AdminfaqsListComponent } from './admin/adminfaqs/adminfaqs-list/adminfa
 import { AdminfaqsNewComponent } from './admin/adminfaqs/adminfaqs-new/adminfaqs-new.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component'
 
+import { SidebarModule, Sidebar } from "ng-sidebar";
+
+import { LoadingModule } from 'ngx-loading'
+import { ToastrModule } from "ngx-toastr"
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +73,6 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     ContactComponent,
     PrivacyComponent,
     TermsComponent,
-    MedexpirationComponent,
     InsulinguideComponent,
     RecallsComponent,
     ExpirationdateComponent,
@@ -98,9 +104,13 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    FormsModule
+    SidebarModule.forRoot(),
+    ToastrModule.forRoot(),
+    LoadingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

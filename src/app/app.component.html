@@ -1,1 +1,75 @@
-<router-outlet></router-outlet>
+<ng-sidebar-container height="100vh" style="height:100vh">
+    <!-- A sidebar -->
+    <ng-sidebar [(opened)]="_opened" closeOnClickOutside="true">
+        <div id="sidebardiv">
+            <div>
+                <img src="assets/home.png" width="25" height="25"/>
+                <a closeSidebar id="sidebtn"  (click)="navToHome()">Home</a>
+            </div><br/>
+           
+            <div>
+                <img src="assets/settings.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToAdmin()">Admin</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/settings.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToProfile()">Profile/My Account</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/settings.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToAbout()">About</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/share.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToShare()">Share with friends</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/faq.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToFaqs()">FAQs</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/sub.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToSub()">Subscription Information</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/contact.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn"  (click)="navToContact()">Contact us/Give feedback</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/privacy.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToPrivacy()" >Privacy Policy</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/terms.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="navToTerms()" >Terms of Service</a>
+            </div><br/>
+
+            <div>
+                <img src="assets/logout.png" width="25" height="25" />
+                <a closeSidebar id="sidebtn" (click)="logout()" > Logout </a>
+            </div><br/><br/>
+            
+        </div>
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content>
+        <!-- <button (click)="_toggleSidebar()">Toggle sidebar</button> -->
+        <button *ngIf="showSidebar" (click)="_toggleSidebar()" class="navbar-toggler toggler-example" type="button"
+        aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
+
+        <router-outlet></router-outlet>
+    </div>
+</ng-sidebar-container>
+
+
+
+

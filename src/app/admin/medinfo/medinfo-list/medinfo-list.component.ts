@@ -19,14 +19,14 @@ export class MedinfoListComponent implements OnInit {
   ngOnInit() 
   {
     var x = this.medinfoService.getData();
-    x.snapshotChanges().subscribe(item=>{
-        this.medinfoList = [];
-        item.forEach(element=>{
-            var y = element.payload.toJSON()
-            y["$key"] = element.key
-            this.medinfoList.push(y as Medinfo)
-        })
-    })
+    // x.snapshotChanges().subscribe(item=>{
+    //     this.medinfoList = [];
+    //     item.forEach(element=>{
+    //         var y = element.payload.toJSON()
+    //         y["$key"] = element.key
+    //         this.medinfoList.push(y as Medinfo)
+    //     })
+    // })
 
 
   }

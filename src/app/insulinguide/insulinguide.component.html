@@ -5,28 +5,28 @@
       <div class="form-group">
         <select class="form-control">
             <option>Select Insulin Name</option>
-            <option></option>
+            <option *ngFor="let m of items | async">{{ m.name }}</option>
         </select>
       </div>
   
       <div class="form-group">
           <select class="form-control">
               <option>Select Brand</option>
-              <option></option>
+              <option *ngFor="let m of items | async">{{ m.brand }}</option>
           </select>
       </div>
 
       <div class="form-group">
           <select class="form-control">
               <option>Select Type</option>
-              <option></option>
+              <option *ngFor="let m of items | async">{{ m.type }} </option>
           </select>
       </div>
 
       <div class="form-group">
           <select class="form-control">
               <option>Select ML</option>
-              <option></option>
+              <option *ngFor="let m of items | async">{{ m.ml }} </option>
           </select>
       </div>
 

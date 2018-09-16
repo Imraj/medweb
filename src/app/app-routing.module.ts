@@ -6,6 +6,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { ContactComponent } from "./contact/contact.component";
 import { FaqsComponent } from "./faqs/faqs.component";
 import { ForgotpasswordComponent } from "./forgotpassword/forgotpassword.component";
+import { ChangepasswordComponent } from "./changepassword/changepassword.component";
 import { HomeComponent } from "./home/home.component";
 import { InsulinguideComponent } from "./insulinguide/insulinguide.component";
 import { LoginComponent } from "./login/login.component";
@@ -32,14 +33,15 @@ import { AdminfaqsComponent } from "./admin/adminfaqs/adminfaqs.component";
 
 const routes: Routes = [
 
-  {path:'',component:HomeComponent},
   {path:'login',component:LoginComponent},
+  {path:'',component:HomeComponent},
   {path:'register',component:RegisterComponent},
   {path:'about',component:AboutComponent},
   {path:'admin',component:AdminComponent},
   {path:'contact',component:ContactComponent},
   {path:'faqs',component:FaqsComponent},
   {path:'forgotpassword',component:ForgotpasswordComponent},
+  {path:'changepassword',component:ChangepasswordComponent},
   {path:'insulinguide',component:InsulinguideComponent},
   {path:'privacy',component:PrivacyComponent},
   {path:'profile',component:ProfileComponent},

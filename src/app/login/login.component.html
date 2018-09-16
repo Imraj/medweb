@@ -1,4 +1,6 @@
-<div class="col col-md-6 offset-3" id="page">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="col col-6 offset-3" id="page">
 
   <form  #loginForm="ngForm" (ngSubmit)="authenticateUser(loginForm)">
       <div class="form-group">

@@ -11,7 +11,7 @@ export class FaqsService {
   faqList:  AngularFireList<any>;
   selectedFaq: Faqs = new Faqs();
 
-  constructor(public db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) { }
 
   getData(){
     this.faqList = this.db.list("faqs");

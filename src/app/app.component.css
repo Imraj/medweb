@@ -2,3 +2,13 @@
     margin-top:5em;
 }
 
+#sidebtn{
+    background-color: #938f71;
+    color: black;
+    margin-top: 55px;
+    margin-left: 15px;
+}
+
+#sidebardiv{
+    background-color: #938f71; 
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from "@angular/router"
 import { AngularFireDatabase,AngularFireList } from "angularfire2/database";
 
 @Component({
@@ -11,15 +11,16 @@ export class ProfileComponent implements OnInit {
 
   profile = {
     fullname : "",
-    username : '"',
+    username : "",
     age:"",
+    gender: "",
     occupation:"",
     country : "",
     state: "",
     password: ""
   }
 
-  constructor(public db:AngularFireDatabase) { }
+  constructor(public db:AngularFireDatabase, private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,6 +37,10 @@ export class ProfileComponent implements OnInit {
 
   changePassword(){
     let password = this.profile.password
+  }
+
+  navToChangepwd(){
+    this.router.navigate(["/changepassword"])
   }
 
 }

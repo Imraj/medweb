@@ -16,15 +16,15 @@ export class SubscribersListComponent implements OnInit {
 
   ngOnInit() {
       var x = this.subscriberService.getData()
-      x.snapshotChanges().subscribe(item=>{
-        this.subList = []
-        item.forEach(element=>{
-          var y = element.payload.toJSON()
-          y["key"] = element.key
-          this.subList.push(y as Subscriber)
-        })
+      // x.snapshotChanges().subscribe(item=>{
+      //   this.subList = []
+      //   item.forEach(element=>{
+      //     var y = element.payload.toJSON()
+      //     y["key"] = element.key
+      //     this.subList.push(y as Subscriber)
+      //   })
 
-      })
+      // })
   }
 
 }

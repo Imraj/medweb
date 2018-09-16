@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Faqs } from "../shared/faqs.model"
 import { FaqsService } from "../shared/faqs.service"
-
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database"
 @Component({
   selector: 'app-adminfaqs-list',
   templateUrl: './adminfaqs-list.component.html',
@@ -12,13 +12,13 @@ export class AdminfaqsListComponent implements OnInit {
 
 
   faqList : Faqs[]
-  constructor(public faqsService: FaqsService){
+  constructor(public faqsService: FaqsService,public db:AngularFireDatabase){
 
   }
 
   ngOnInit(){
-    var x = this.faqsService.getData()
-    x.snapshotChanges().subscribe(item=>{
+    //var x = this.faqsService.getData() 
+    this.db.list("/faqs").snapshotChanges().subscribe(item=>{
       this.faqList = []  
       item.forEach(element=>{
          var y = element.payload.toJSON();

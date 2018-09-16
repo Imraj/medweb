@@ -18,14 +18,14 @@ export class SubscriptionsComponent implements OnInit {
 
   ngOnInit() {
     var x = this.subscriptionService.getData()
-    x.snapshotChanges().subscribe(item=>{
-      this.subList = []
-      item.forEach(element=>{
-        var y = element.payload.toJSON()
-        y["key"] = element.key
-        this.subList.push(y as Subscription)
-      })
-    })
+    // x.snapshotChanges().subscribe(item=>{
+    //   this.subList = []
+    //   item.forEach(element=>{
+    //     var y = element.payload.toJSON()
+    //     y["key"] = element.key
+    //     this.subList.push(y as Subscription)
+    //   })
+    // })
   }
 
 }

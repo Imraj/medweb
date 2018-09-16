@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-share',
@@ -15,7 +15,7 @@ export class ShareComponent implements OnInit {
     email3:""
   }
 
-  constructor(public http: Http) { }
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -25,7 +25,7 @@ export class ShareComponent implements OnInit {
     let email2 = this.share.email2
     let email3 = this.share.email3
 
-    this.http.get("http://000webhost.com/share.php,",{})
+    //this.http.get("http://000webhost.com/share.php,",{})
         
   }
 
