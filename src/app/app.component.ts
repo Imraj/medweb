@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import * as $ from "jquery"
 import { Router, NavigationStart } from "@angular/router"
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +12,11 @@ import { Router, NavigationStart } from "@angular/router"
 })
 
 export class AppComponent {
-
+  admin : boolean = false
+  fullname: string
   showSidebar : boolean = true
-  constructor(private router: Router) { 
-    
+  constructor(private router: Router,private afAuth: AngularFireAuth,private storage: LocalStorage) 
+  { 
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
          if(event.url == "/login"){
@@ -29,8 +33,21 @@ export class AppComponent {
          
       }
       
+    
+    
     });
-   
+
+    this.storage.getItem("user").subscribe((user)=>{
+       if(user == null){
+         this.router.navigate(["/login"])
+       }else{
+        this.admin = user.admin
+        this.fullname = user.fullname
+       }
+    })
+
+
+
   }
   
   ngOnInit() {
@@ -87,7 +104,9 @@ export class AppComponent {
   }
 
   logout(){
-
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
   }
 
 }

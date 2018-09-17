@@ -12,7 +12,7 @@ export class SubscriptionService {
   constructor(public db: AngularFireDatabase) { }
 
   getData(){
-    this.subList = this.db.list("subscriptions")
+    this.subList = this.db.list("profile")
   }
 
   deleteSubscription($key: string){

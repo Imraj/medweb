@@ -5,8 +5,12 @@
 #sidebtn{
     background-color: #938f71;
     color: black;
-    margin-top: 55px;
-    margin-left: 15px;
+    margin-top: 75px;
+    margin-left: 7px;
+}
+
+#sidebardiv img{
+    margin-left: 3px;
 }
 
 #sidebardiv{

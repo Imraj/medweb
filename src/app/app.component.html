@@ -3,14 +3,20 @@
     <ng-sidebar [(opened)]="_opened" closeOnClickOutside="true">
         <div id="sidebardiv">
             <div>
+                <a closeSidebar>Settings</a>
+            </div>
+            <div>
                 <img src="assets/home.png" width="25" height="25"/>
                 <a closeSidebar id="sidebtn"  (click)="navToHome()">Home</a>
             </div><br/>
            
+            <!-- <div *ngIf="admin == true"> -->
             <div>
                 <img src="assets/settings.png" width="25" height="25" />
                 <a closeSidebar id="sidebtn" (click)="navToAdmin()">Admin</a>
-            </div><br/>
+            </div>
+            <br/>
+            <!-- <br *ngIf="admin == true"/> -->
 
             <div>
                 <img src="assets/settings.png" width="25" height="25" />
@@ -39,7 +45,7 @@
 
             <div>
                 <img src="assets/contact.png" width="25" height="25" />
-                <a closeSidebar id="sidebtn"  (click)="navToContact()">Contact us/Give feedback</a>
+                <a closeSidebar id="sidebtn"  (click)="navToContact()">Contact /Feedback</a>
             </div><br/>
 
             <div>
@@ -61,10 +67,33 @@
     </ng-sidebar>
 
     <!-- Page content -->
-    <div ng-sidebar-content>
+    <div ng-sidebar-content id="page-content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a *ngIf="showSidebar" (click)="_toggleSidebar()" class="toggler-example"
+                    aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
+                </a>
+                <a class="navbar-brand" href="#">MedExpiration</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+               
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto pull-right">
+                    <li class="nav-item pull-right">
+                        <a class="nav-link" href="#">{{ fullname }}</a>
+                    </li>
+                    
+                    
+                    </ul>
+                    
+                </div>
+            </nav>    
+
         <!-- <button (click)="_toggleSidebar()">Toggle sidebar</button> -->
-        <button *ngIf="showSidebar" (click)="_toggleSidebar()" class="navbar-toggler toggler-example" type="button"
-        aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
+        <!-- <button *ngIf="showSidebar" (click)="_toggleSidebar()" class="navbar-toggler toggler-example" type="button"
+        aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button> -->
 
         <router-outlet></router-outlet>
     </div>

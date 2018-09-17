@@ -1,59 +1,47 @@
-<div class="col col-6 offset-3" id="page">
-    <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Collapsible Group Item #1
-              </button>
-            </h5>
-          </div>
-      
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-               <div>Manufacturer: Test</div>
-               <div>Date Recalled : 02/01/2019</div>
-               <div>
-                 <span>Reason for recall : </span>
-               </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Collapsible Group Item #2
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-                <div>Manufacturer: Test</div>
-               <div>Date Recalled : 02/01/2019</div>
-               <div>
-                 <span>Reason for recall : </span>
-               </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Collapsible Group Item #3
-              </button>
-            </h5>
-          </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-                <div>Manufacturer: Test</div>
-                <div>Date Recalled : 02/01/2019</div>
-                <div>
-                  <span>Reason for recall : </span>
+<div id="cont">
+
+    <div class="col col-6 offset-3" id="page">
+        <div class="accordion" id="accordionExample">
+            <div class="card" *ngFor="let r of items | async; index as i">
+                <div class="card-header" [attr.id]="'heading'+i">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                      {{ r.medicine }}
+                    </button>
+                  </h5>
+                </div>
+            
+                <div [attr.id]="'collapse'+i" class="collapse" [attr.aria-labelledby]="'heading'+i" data-parent="#accordionExample">
+                  <div class="card-body">
+                     <div>Manufacturer: {{ r.manufacturer }}</div>
+                     <div>Date Recalled : {{ r.recalldate }}</div>
+                     <div>
+                       <span>Reason for recall : </span>
+                       <p>
+                         {{ r.reason }}
+                       </p>
+                     </div>
+                  </div>
                 </div>
             </div>
           </div>
-        </div>
-      </div>
+    </div>
+
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+                <span style="color:red;margin-bottom:3em;">*</span>
+            </div>
+        </div>
+    </div>
+</footer> 

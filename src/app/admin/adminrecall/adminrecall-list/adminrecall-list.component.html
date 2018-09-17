@@ -1,3 +1,16 @@
-<p>
-  adminrecall-list works!
-</p>
+<div class="container">
+  <div class="row col-12">
+      <h4>Recall List</h4>
+      <table class="table table-sm table-hover">
+        <tr>
+          <th>Medicine</th>
+          <th>Manufacturer</th>
+          <th>Recall Date</th>
+        </tr>
+        <tr *ngFor="let rec of recallList">
+          <td>{{ rec.medicine }}</td>
+          <td>{{ rec.recalldate }}</td>
+        </tr>
+      </table>
+  </div>
+</div>

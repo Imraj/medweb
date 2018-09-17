@@ -1,16 +1,21 @@
 <div>
 
-  <form>
+  <form #adminRecallForm="ngForm" (ngSubmit)="submitForm(adminRecallForm)">
+
+        <div class="form-group">
+            <input type="text" name="medicine" #medicine="ngModel" [(ngModel)]="recallService.selectedRecall.medicine" placeholder="Medicine" class="form-control">
+        </div>
+
       <div class="form-group">
-        <input type="text" placeholder="Manufacturer" class="form-control">
+        <input type="text" name="manufacturer" #manufacturer="ngModel" [(ngModel)]="recallService.selectedRecall.manufacturer" placeholder="Manufacturer" class="form-control">
       </div>
 
       <div class="form-group">
-          <input type="text" placeholder="Date" class="form-control">
+          <input type="text" name="date" #date="ngModel" [(ngModel)]="recallService.selectedRecall.date" placeholder="Date" class="form-control">
       </div>
 
       <div class="form-group">
-          <textarea placeholder="Reason for recall" cols="30" rows="10" class="form-control"></textarea>
+          <textarea placeholder="Reason for recall" name="reason" #reason="ngModel" [(ngModel)]="recallService.selectedRecall.reason" cols="30" rows="10" class="form-control"></textarea>
       </div>
 
       <div class="form-group">

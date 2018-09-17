@@ -2,3 +2,13 @@
     height: 10em;
 }
 
+#cont{
+    background-color:#f6f5f3 ;
+   
+}
+
+#locBtn{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 14sp;
+}

@@ -1,23 +1,25 @@
-<div class="col col-6 offset-3" id="page">
+<div class="col col-8 offset-2" id="page">
     <h4>Frequently Asked Question</h4>
     <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
+        <div class="card" *ngFor="let f of items | async; index as i">
+          <div class="card-header" [attr.id]="'heading'+i">
             <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Question 1
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                {{ f.question }}
               </button>
             </h5>
           </div>
       
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div [attr.id]="'collapse'+i" class="collapse show" [attr.aria-labelledby]="'heading'+i" data-parent="#accordionExample">
             <div class="card-body">
-               <div>Answer</div>
+               <div>
+                 {{ f.answer }}
+               </div>
                
             </div>
           </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
               <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -45,6 +47,23 @@
                 <div>Answer 3</div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+               
+            </div>
+        </div>
+    </div>
+</footer> 

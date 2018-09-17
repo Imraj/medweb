@@ -1,3 +1,15 @@
-<p>
-  admininsulin-list works!
-</p>
+<div>
+    <table class="table table-sm table-hover">
+      <tr>
+        <td>Name</td>
+        <td>Brand</td>
+        <td>Type</td>
+      </tr>
+      <tr *ngFor="let ins of insulinList">
+          <td>{{ ins.name}}</td>
+          <td>{{ ins.brand }}</td>
+          <td>{{ ins.type }}</td>
+      </tr>
+    </table>
+
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms"
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-contact',
@@ -9,12 +10,12 @@ import { NgForm } from "@angular/forms"
 export class ContactComponent implements OnInit {
 
   contact = {
-    type:"",
+    type:"App Feedback",
     subject : "",
     message : ""
   }
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
@@ -26,5 +27,18 @@ export class ContactComponent implements OnInit {
 
     
   }
+
+  navToExpirationdate(){
+    this.router.navigate(["/expirationdate"])
+  }
+
+  navToInsulin(){
+    this.router.navigate(["/insulinguide"])
+  }
+
+  navToRecall(){
+    this.router.navigate(["/recalls"])
+  }
+
 
 }

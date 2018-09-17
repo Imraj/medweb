@@ -1,13 +1,18 @@
-<h6 class="text-center"> Med Info </h6>
 
+<h6>Med Info</h6>
 <table class="table table-sm table-hover">
+    <tr>
+        <td>Name</td>
+        <td>Type</td>
+        <td>Date</td>
+    </tr>
     <tr *ngFor="let med of medinfoList">
-        <td>{{ med.medName }}}</td>
+        <td>{{ med.medName }}</td>
         <td>{{ med.medType }}</td>
         <td>{{ med.medDate }}</td>
         <td>
             <a class="btn">
-              <i class="fa fa-pencil-square-o"></i>
+                <i class="fa fa-pencil-square-o"></i>
             </a>
             <a class="btn">
                 <i class="fa fa-trash"></i>
@@ -15,3 +20,4 @@
         </td>
     </tr>
 </table>
+

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Administrator } from "./shared/administrator.model"
+import { AdministratorService } from "./shared/administrator.service"
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database"
+import { LocalStorage } from "@ngx-pwa/local-storage"
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-administrators',
@@ -7,10 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministratorsComponent implements OnInit {
 
-  constructor() { }
+  adminList : Administrator[]
+  constructor(public db:AngularFireDatabase,public storage: LocalStorage,public router: Router) 
+  {
+
+  }
 
   ngOnInit() {
-    
+    this.storage.getItem("user").subscribe((user)=>{
+      if(user.admin == false){
+        this.router.navigate(["/"])
+      }
+      console.log("user.admin",user.admin)
+   })
+
+    this.db.list("/profiles").snapshotChanges().subscribe(item=>{
+      this.adminList = []  
+      item.forEach(element=>{
+         var y = element.payload.toJSON();
+         y["key"] = element.key
+         this.adminList.push(y as Administrator)
+      })
+    })
   }
+  
 
 }

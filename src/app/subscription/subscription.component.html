@@ -1,6 +1,12 @@
 <div id="page" class="col col-6 offset-3">
 
-  <form #subForm="ngForm" (ngSubmit)="subscribeNow(subForm)">
+  <div>
+     Annual Subscription is required to use the insulin and recall feature. Click the
+     button below to subscribe now.
+  </div>
+  <button (click)="openCheckout()" class="btn btn-primary">Subscribe Now</button>
+
+  <!-- <form #subForm="ngForm" (ngSubmit)="subscribeNow(subForm)">
 
       <div class="form-group">
         <input type="text" name="cardno" #cardno="ngModel" [(ngModel)]="sub.cardno" placeholder="Card number" class="form-control">
@@ -22,6 +28,23 @@
         <input type="submit" value="Subscribe" class="btn btn-primary"/>
       </div>
 
-  </form>
+  </form> -->
 
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+               
+            </div>
+        </div>
+    </div>
+</footer> 

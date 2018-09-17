@@ -20,12 +20,12 @@ import { TermsComponent } from "./terms/terms.component";
 import { ExpirationdateComponent } from "./expirationdate/expirationdate.component"
 
 import { UsersComponent } from "./admin/users/users.component"
-import { SubscribersComponent } from "./admin/subscribers/subscribers.component";
+//import { SubscribersComponent } from "./admin/subscribers/subscribers.component";
 import { AdministratorsComponent } from "./admin/administrators/administrators.component";
 import { MedinfoComponent } from "./admin/medinfo/medinfo.component";
 import { AdminrecallComponent } from "./admin/adminrecall/adminrecall.component";
 import { AdmininsulinComponent } from "./admin/admininsulin/admininsulin.component";
-import { AdminsubscriptionComponent } from "./admin/adminsubscription/adminsubscription.component";
+import { SubscriptionsComponent } from "./admin/subscriptions/subscriptions.component";
 import { NotificationsComponent} from "./admin/notifications/notifications.component";
 import { AdminprivacyComponent } from "./admin/adminprivacy/adminprivacy.component";
 import { AdmintermsComponent } from "./admin/adminterms/adminterms.component";
@@ -35,6 +35,7 @@ const routes: Routes = [
 
   {path:'login',component:LoginComponent},
   {path:'',component:HomeComponent},
+  {path:'home',component:HomeComponent},
   {path:'register',component:RegisterComponent},
   {path:'about',component:AboutComponent},
   {path:'admin',component:AdminComponent},
@@ -52,12 +53,12 @@ const routes: Routes = [
   {path:'expirationdate',component:ExpirationdateComponent},
 
   {path:'admin/users',component:UsersComponent},
-  {path:'admin/subscribers',component:SubscribersComponent},
+  //{path:'admin/subscribers',component:SubscribersComponent},
   {path:'admin/administrators',component:AdministratorsComponent},
   {path:'admin/medinfo',component:MedinfoComponent},
   {path:'admin/recall',component:AdminrecallComponent},
   {path:'admin/insulin',component:AdmininsulinComponent},
-  {path:'admin/subscription',component:AdminsubscriptionComponent},
+  {path:'admin/subscription',component:SubscriptionsComponent},
   {path:'admin/notification',component:NotificationsComponent},
   {path:'admin/privacy',component:AdminprivacyComponent},
   {path:'admin/terms',component:AdmintermsComponent},

@@ -25,4 +25,16 @@ export class ExpirationdateComponent implements OnInit {
 
   }
 
+  navToExpirationdate(){
+    this.router.navigate(["/expirationdate"])
+  }
+
+  navToInsulin(){
+    this.router.navigate(["/insulinguide"])
+  }
+
+  navToRecall(){
+    this.router.navigate(["/recalls"])
+  }
+
 }

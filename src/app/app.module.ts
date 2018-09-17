@@ -20,7 +20,7 @@ import { InsulinguideComponent } from './insulinguide/insulinguide.component';
 import { RecallsComponent } from './recalls/recalls.component';
 import { ExpirationdateComponent } from './expirationdate/expirationdate.component';
 import { UsersComponent } from './admin/users/users.component';
-import { SubscribersComponent } from './admin/subscribers/subscribers.component';
+//import { SubscribersComponent } from './admin/subscribers/subscribers.component';
 import { AdministratorsComponent } from './admin/administrators/administrators.component';
 import { MedinfoComponent } from './admin/medinfo/medinfo.component';
 import { SubscriptionsComponent } from './admin/subscriptions/subscriptions.component';
@@ -30,7 +30,7 @@ import { AdmininsulinComponent } from './admin/admininsulin/admininsulin.compone
 import { AdminprivacyComponent } from './admin/adminprivacy/adminprivacy.component';
 import { AdmintermsComponent } from './admin/adminterms/adminterms.component';
 import { AdminfaqsComponent } from './admin/adminfaqs/adminfaqs.component';
-import { AdminsubscriptionComponent } from './admin/adminsubscription/adminsubscription.component';
+//import { SubscriptionsComponent } from './admin/subscriptions/subscriptions.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -41,8 +41,8 @@ import { AdminrecallListComponent } from './admin/adminrecall/adminrecall-list/a
 import { AdminrecallNewComponent } from './admin/adminrecall/adminrecall-new/adminrecall-new.component';
 import { MedinfoListComponent } from './admin/medinfo/medinfo-list/medinfo-list.component';
 import { MedinfoNewComponent } from './admin/medinfo/medinfo-new/medinfo-new.component';
-import { SubscribersListComponent } from './admin/subscribers/subscribers-list/subscribers-list.component';
-import { SubscribersNewComponent } from './admin/subscribers/subscribers-new/subscribers-new.component';
+//import { SubscribersListComponent } from './admin/subscribers/subscribers-list/subscribers-list.component';
+//import { SubscribersNewComponent } from './admin/subscribers/subscribers-new/subscribers-new.component';
 
 import { FormsModule } from "@angular/forms";
 import { AdminfaqsListComponent } from './admin/adminfaqs/adminfaqs-list/adminfaqs-list.component';
@@ -56,6 +56,9 @@ import { ToastrModule } from "ngx-toastr"
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
+import { AdmininsulinNewComponent } from './admin/admininsulin/admininsulin-new/admininsulin-new.component';
+import { UsersNewComponent } from './admin/users/users-new/users-new.component';
+import { UsersListComponent } from './admin/users/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,7 @@ import { HttpClientModule } from '@angular/common/http';
     RecallsComponent,
     ExpirationdateComponent,
     UsersComponent,
-    SubscribersComponent,
+    //SubscribersComponent,
     AdministratorsComponent,
     MedinfoComponent,
     SubscriptionsComponent,
@@ -87,17 +90,20 @@ import { HttpClientModule } from '@angular/common/http';
     AdminprivacyComponent,
     AdmintermsComponent,
     AdminfaqsComponent,
-    AdminsubscriptionComponent,
+    //AdminsubscriptionComponent,
     AdmininsulinListComponent,
     AdminrecallListComponent,
     AdminrecallNewComponent,
     MedinfoListComponent,
     MedinfoNewComponent,
-    SubscribersListComponent,
-    SubscribersNewComponent,
+    //SubscribersListComponent,
+    //SubscribersNewComponent,
     AdminfaqsListComponent,
     AdminfaqsNewComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    AdmininsulinNewComponent,
+    UsersNewComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

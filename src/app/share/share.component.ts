@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-share',
@@ -15,7 +16,7 @@ export class ShareComponent implements OnInit {
     email3:""
   }
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient,public router: Router) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,18 @@ export class ShareComponent implements OnInit {
 
     //this.http.get("http://000webhost.com/share.php,",{})
         
+  }
+
+  navToExpirationdate(){
+    this.router.navigate(["/expirationdate"])
+  }
+
+  navToInsulin(){
+    this.router.navigate(["/insulinguide"])
+  }
+
+  navToRecall(){
+    this.router.navigate(["/recalls"])
   }
 
 }

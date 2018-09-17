@@ -2,10 +2,10 @@
   <form #contactForm="ngForm" (ngSubmit)="sendMessage(contactForm)">
 
       <div class="form-group">
-        <select class="form-control" [(ngModel)]="contact.type">
-          <option>App Feedback</option>
-          <option>Medication not listed</option>
-          <option>Other</option>
+        <select class="form-control" name="type" #type="ngModel" [(ngModel)]="contact.type">
+          <option value="feedback">App Feedback</option>
+          <option value="unlistedmed">Medication not listed</option>
+          <option value="other">Other</option>
         </select>
       </div>
 
@@ -23,3 +23,20 @@
 
   </form>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+               
+            </div>
+        </div>
+    </div>
+</footer> 
