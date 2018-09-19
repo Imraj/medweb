@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router"
+import {NgForm} from "@angular/forms"
 
 @Component({
   selector: 'app-share',
@@ -21,7 +22,7 @@ export class ShareComponent implements OnInit {
   ngOnInit() {
   }
 
-  shareEmail(){
+  shareEmail(shareForm: NgForm){
     let email1 = this.share.email1
     let email2 = this.share.email2
     let email3 = this.share.email3

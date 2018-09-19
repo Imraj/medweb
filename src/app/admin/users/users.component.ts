@@ -22,20 +22,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(){
     
-    this.db.list("/profiles").snapshotChanges().subscribe(item=>{
-      this.userList = []
-      item.forEach(element=>{
-         var y = element.payload.toJSON()
-         y["key"] = element.key
-         this.userList.push(y as User)
-      })
-    })
-
-    this.storage.getItem("user").subscribe((user)=>{
-      if(user.admin == false){
-        this.router.navigate(["/"])
-      }
-   })
+    
   }
 
 }

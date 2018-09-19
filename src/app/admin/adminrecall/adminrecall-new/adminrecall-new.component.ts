@@ -10,7 +10,7 @@ import { Recall } from "../shared/recall.model"
 })
 export class AdminrecallNewComponent implements OnInit {
 
-  constructor(private recallService: RecallService) { }
+  constructor(public recallService: RecallService) { }
 
   ngOnInit() {
     

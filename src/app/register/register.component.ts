@@ -17,9 +17,16 @@ export class RegisterComponent implements OnInit {
 
   public loading = false;
 
+  reg = {
+    fullname:"",
+    email:"",
+    pwd:"",
+    pwd2:""
+  }
+
   constructor(public db:AngularFireDatabase,public router: Router,
-    public afAuth: AngularFireAuth,private toastr: ToastrService,
-    protected storage: LocalStorage) { }
+              public afAuth: AngularFireAuth,private toastr: ToastrService,
+              protected storage: LocalStorage) { }
 
   ngOnInit() {
     this.storage.getItem("user").subscribe((user)=>{

@@ -1,3 +1,41 @@
 <p>
   users-list works!
 </p>
+<div class="container">
+
+  <table class="table-sm table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Admin Priviledge</th>
+        <th>Subscribed</th>
+        <th>Give Sub Access</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let user of userList">
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>
+          <a class="btn">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+      </td>
+      <td>
+          {{ user.subscribed }}
+      </td>
+      <td *ngIf="!user.subscribed">
+        <a class="btn">
+          <i class="fa fa-pencil-square-o"></i>
+        </a>
+      </td>
+      <td>
+          <a class="btn">
+            <i class="fa fa-trash"></i>
+          </a>
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>

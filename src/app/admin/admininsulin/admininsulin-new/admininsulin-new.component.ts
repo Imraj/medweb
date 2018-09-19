@@ -9,7 +9,7 @@ import { NgForm } from "@angular/forms";
 })
 export class AdmininsulinNewComponent implements OnInit {
 
-  constructor(private insulinService: InsulinService) { 
+  constructor(public insulinService: InsulinService) { 
 
   }
 

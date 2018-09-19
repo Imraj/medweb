@@ -1,3 +1,23 @@
-<p>
-  users-new works!
-</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="container">
+   <form #newUserForm="ngForm" (ngSubmit)="createAccount(newUserForm)">
+
+     <div class="form-group">
+        <input type="text" placeholder="Fullname" name="fullname" #fullname="ngModel" [(ngModel)]="newUser.fullname" class="form-control">
+     </div>
+     <div class="form-group">
+      <input type="text" placeholder="Email Address" name="email" #email="ngModel" [(ngModel)]="newUser.email" class="form-control">
+     </div>
+     <div class="form-group">
+        <input type="text" placeholder="Password" name="pwd" #pwd="ngModel" [(ngModel)]="newUser.pwd" class="form-control">
+     </div>
+     <div class="form-group">
+        <input type="text" placeholder="Password Again" name="pwd2" #pwd2="ngModel" [(ngModel)]="newUser.pwd2" class="form-control">
+     </div>
+     <div class="form-group">
+       <input type="button" value="Create Account" class="btn btn-primary">
+     </div>
+
+   </form>
+</div>

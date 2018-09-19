@@ -1,27 +1,10 @@
 <div class="container">
-
-    <table class="table-sm table-hover">
-      <tr>
-          <th>Name</th>
-          <th>Email Address</th>
-          <th>Admin Priviledge</th>
-          <th></th>
-      </tr>
-      <tr *ngFor="let user of userList">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>
-            <a class="btn">
-                <i class="fa fa-trash"></i>
-            </a>
-        </td>
-        <td>
-            <a class="btn">
-                <i class="fa fa-trash"></i>
-            </a>
-        </td>
-      </tr>
-
-    </table>
-
+    <div class="col col-12">
+        <div class="col col-6">
+            <app-users-new></app-users-new>
+        </div>
+        <div class="col col-6">
+            <app-users-list></app-users-list>
+        </div>
+    </div>
 </div>

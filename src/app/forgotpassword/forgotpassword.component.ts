@@ -11,6 +11,10 @@ import { ToastrService } from "ngx-toastr"
 })
 export class ForgotpasswordComponent implements OnInit {
 
+  pwd = {
+    email:""
+  }
+
   public loading = false;
 
   constructor(private toastr: ToastrService) { }
