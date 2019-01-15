@@ -8,6 +8,8 @@ import { Router } from "@angular/router"
 import { ToastrService } from "ngx-toastr"
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
+import { UserService } from "../shared/user.service";
+
 
 @Component({
   selector: 'app-users-new',
@@ -18,8 +20,13 @@ export class UsersNewComponent implements OnInit {
 
   public loading = true
 
+  newUser = {
+    pwd:"",
+    pwd2:""
+  }
+
   constructor(public afAuth: AngularFireAuth,private toastr: ToastrService,
-      public db:AngularFireDatabase){ 
+      public db:AngularFireDatabase, public userService: UserService){ 
 
       
   }
@@ -28,39 +35,39 @@ export class UsersNewComponent implements OnInit {
 
   }
 
-  createAccount(regForm: NgForm){
+  createAccount(newUserForm: NgForm){
 
-    this.loading = true
-
-    let fullname = regForm.value.fullname
-    let email = regForm.value.email
-    let pwd = regForm.value.pwd
-    let pwd2 = regForm.value.pwd2
-
-    this.afAuth.auth.createUserWithEmailAndPassword(email,pwd)
-        .then((user)=>{
-          this.loading = false
-          this.db.list("/profile").push({
-            admin: false,
-            age: "",
-            country: "",
-            email: email,
-            ethnicity: "",
-            fullname: fullname,
-            gender: "",
-            occupation: "",
-            state: "",
-            subscribed: false,
-            subscribed_date: ""
-          })
-          this.toastr.success("Account created successfully","Success")
-        })
-        .catch((err)=>{
-            this.loading = false
-            this.toastr.error("Error creating account","Error")
-        })
+    if(newUserForm.value.$key == null){
+      firebase.auth().createUserWithEmailAndPassword(newUserForm.value.email, newUserForm.value.password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("errorCode",errorCode)
+        console.log("errorMessage",errorMessage)
+      });
+      this.userService.insertUser(newUserForm.value);
+    }
+    else{
+      this.userService.updateUser(newUserForm.value)
+    }
+    this.resetForm(newUserForm)
+    this.toastr.success("Account Created Successfully","Success")
 
   }
 
+
+  resetForm(newUserForm: NgForm)
+  {
+
+    if(newUserForm!=null)
+       newUserForm.reset();
+
+    this.userService.selectedUser = {
+      $key: null,
+      fullname: "",
+      email: ""
+    }
+
+  }
 
 }

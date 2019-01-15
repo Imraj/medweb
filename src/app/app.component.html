@@ -1,22 +1,20 @@
 <ng-sidebar-container height="100vh" style="height:100vh">
     <!-- A sidebar -->
-    <ng-sidebar closeOnClickOutside="true">
+    <ng-sidebar [(opened)]="_opened" closeOnClickOutside="true">
         <div id="sidebardiv">
             <div>
-                <a closeSidebar>Settings</a>
+                <a closeSidebar>Settings : Safely Administer Medications</a>
             </div>
             <div>
                 <img src="assets/home.png" width="25" height="25"/>
                 <a closeSidebar id="sidebtn"  (click)="navToHome()">Home</a>
             </div><br/>
            
-            <!-- <div *ngIf="admin == true"> -->
-            <div>
-                <img src="assets/settings.png" width="25" height="25" />
+            <div *ngIf="admin == true"> 
+                <img src="assets/blue_logo.png" width="35" height="35" />
                 <a closeSidebar id="sidebtn" (click)="navToAdmin()">Admin</a>
             </div>
-            <br/>
-            <!-- <br *ngIf="admin == true"/> -->
+            <br *ngIf="admin == true"/>
 
             <div>
                 <img src="assets/settings.png" width="25" height="25" />
@@ -24,7 +22,7 @@
             </div><br/>
 
             <div>
-                <img src="assets/settings.png" width="25" height="25" />
+                <img src="assets/blue_logo.png" width="35" height="35" />
                 <a closeSidebar id="sidebtn" (click)="navToAbout()">About</a>
             </div><br/>
 
@@ -45,17 +43,19 @@
 
             <div>
                 <img src="assets/contact.png" width="25" height="25" />
-                <a closeSidebar id="sidebtn"  (click)="navToContact()">Contact /Feedback</a>
+                <a closeSidebar id="sidebtn"  (click)="navToContact()">Contact Us</a>
             </div><br/>
 
             <div>
                 <img src="assets/privacy.png" width="25" height="25" />
-                <a closeSidebar id="sidebtn" (click)="navToPrivacy()" >Privacy Policy</a>
+                <!-- <a closeSidebar id="sidebtn" (click)="navToPrivacy()" >Privacy Policy</a> -->
+                <a closeSidebar id="sidebtn" href="http://www.medexpiration.com/privacy.html" target="_blank">Privacy Policy</a>
             </div><br/>
 
             <div>
                 <img src="assets/terms.png" width="25" height="25" />
-                <a closeSidebar id="sidebtn" (click)="navToTerms()" >Terms of Service</a>
+                <!-- <a closeSidebar id="sidebtn" (click)="navToTerms()" >Terms of Service</a> -->
+                <a closeSidebar id="sidebtn" href="http://www.medexpiration.com/termsofuse.html" target="_blank">Terms of Service</a>
             </div><br/>
 
             <div>
@@ -69,25 +69,35 @@
     <!-- Page content -->
     <div ng-sidebar-content id="page-content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a *ngIf="showSidebar" (click)="_toggleSidebar()" class="toggler-example"
-                    aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
-                </a>
-                <a class="navbar-brand" href="#">MedExpiration</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-               
-                
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto pull-right">
-                    <li class="nav-item pull-right">
-                        <a class="nav-link" href="#">{{ fullname }}</a>
-                    </li>
-                    
-                    
+            <nav class="navbar navbar-expand-lg" style="background-color:#323f52">
+                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a *ngIf="showSidebar" (click)="_toggleSidebar()" class="toggler-example"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="dark-blue-text"><i class="fa fa-bars fa-1x" style="color:white;"></i></span>
+                            </a>
+                        </li>
                     </ul>
-                    
+                </div>
+                <div class="mx-auto order-0">
+                    <a style="color:white;" class="navbar-brand mx-auto">
+                        <img  src="assets/logo.png" width="50" height="50" />
+                        {{ pgtitle }}
+                    </a>
+                    <button class="navbar-toggler" 
+                        type="button" data-toggle="collapse" 
+                        data-target=".dual-collapse2">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                
+                <div class="collapse navbar-collapse w-100 order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item pull-right">
+                            <a class="nav-link" style="color:white;" *ngIf="showSidebar">Welcome {{ fullname }}</a>
+                        </li>
+                    </ul>
                 </div>
             </nav>    
 
@@ -95,7 +105,9 @@
         <!-- <button *ngIf="showSidebar" (click)="_toggleSidebar()" class="navbar-toggler toggler-example" type="button"
         aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button> -->
 
-        <router-outlet></router-outlet>
+        <router-outlet id="rot">
+
+        </router-outlet>
     </div>
 </ng-sidebar-container>
 

@@ -1,0 +1,11 @@
+<form #medForm="ngForm" (ngSubmit)="onSubmit(medForm)">
+
+  <div class="form-group">
+    <input type="text" name="medname" #medname="ngModel" [(ngModel)]="medtypeService.selectedMed.medname" class="form-control" placeholder="Medication Type"/>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-primary" />
+  </div>
+
+</form>

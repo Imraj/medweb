@@ -13,29 +13,29 @@ export class InsulinService {
   constructor(private db: AngularFireDatabase) { }
 
   getData(){
-    this.insulinList = this.db.list("insulin");
+    this.insulinList = this.db.list("insulinguides");
   }
 
   insertInsulin(insulin: Insulin){
-    this.insulinList.push({
-      name: insulin.name,
-      brand: insulin.brand,
-      type: insulin.type,
-      ml: insulin.ml
+    this.db.list("insulinguides").push({
+      type: insulin.type,   
+      date: insulin.date,
+      note: insulin.note,
+      brand: insulin.brand
     })
   }
 
   updateInsulin(insulin: Insulin){
-    this.insulinList.update(insulin.$key,{
-      name: insulin.name,
-      brand: insulin.brand,
+    this.db.list("insulinguides").update(insulin.$key,{
       type: insulin.type,
-      ml: insulin.ml
+      date: insulin.date, 
+      note: insulin.note,
+      brand: insulin.brand
     })
   }
 
   deleteInsulin($key: string){
-    this.insulinList.remove($key)
+    this.db.list("insulinguides").remove($key)
   }
 
   

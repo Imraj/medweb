@@ -15,27 +15,29 @@ export class MedinfoService {
   }
 
   getData(){
-    this.medInfoList = this.db.list("expirationdate")
+    this.medInfoList = this.db.list("medications")
   }
 
   insertInfo(medinfo: Medinfo){
-    this.medInfoList.push({
+   this.db.list("medications").push({
       medType: medinfo.medType,
-      medName: medinfo.medName,
-      medDate: medinfo.medDate
+      medBrand: medinfo.medBrand,
+      medDate: medinfo.medDate,
+      medNote: medinfo.medNote
     })
   }
 
   updateInfo(medinfo: Medinfo){
-    this.medInfoList.update(medinfo.$key,{
+   this.db.list("medications").update(medinfo.$key,{
       medType: medinfo.medType,
-      medName: medinfo.medName,
-      medDate: medinfo.medDate
+      medBrand: medinfo.medBrand,
+      medDate: medinfo.medDate,
+      medNote: medinfo.medNote
     })
   }
 
   deleteInfo($key: string){
-    this.medInfoList.remove($key)
+   this.db.list("medications").remove($key)
   }
 
 }

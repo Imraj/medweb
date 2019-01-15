@@ -1,0 +1,39 @@
+<div>
+  <form #medinfoForm="ngForm" (ngSubmit)="onSubmit(medinfoForm)">
+     <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="medinfoService.selectedMedinfo.$key" class="form-control">
+    
+    <div class="form-group">
+        <!-- <input required type="text" placeholder="Medication Type" name="medType" #medType="ngModel" [(ngModel)]="medinfoService.selectedMedinfo.medType"  class="form-control"> -->
+        <label>Select Medication Brand</label>
+        <select name="medType" #medType="ngModel" [(ngModel)]="medinfoService.selectedMedinfo.medType"  class="form-control">
+            <option *ngFor="let am of adminMedtype | async" [value]="am.medname" >
+                {{ am.medname }}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input required type="text" placeholder="Generic" name="medName" #medName="ngModel" [(ngModel)]="medinfoService.selectedMedinfo.medName"  class="form-control">
+    </div>
+
+    <div class="form-group">
+         
+        <input required type="text" class="form-control" placeholder="Number of days" name="medDate" #medDate="ngModel" [(ngModel)]="medinfoService.selectedMedinfo.medDate">
+         
+    </div>
+
+    <div class="form-group">
+        <textarea required class="form-control" placeholder="Note" name="medNote" #medNote="ngModel" [(ngModel)]="medinfoService.selectedMedinfo.medNote"></textarea>
+    </div>
+
+     <div class="form-group"> 
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-floppy-o"></i>Submit
+        </button>
+        <button class="btn btn-default" type="button" (click)="resetForm(medinfoForm)">
+            <i class="fa fa-repeat"></i> Reset
+        </button>
+     </div>
+
+  </form>
+</div>

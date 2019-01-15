@@ -1,20 +1,48 @@
-<div id="cont">
-    <div class="col col-md-6 offset-5" id="page">
-        <div id="opt" (click)="navToExp()">
-          <img src="assets/expirationdate.png" width="45" height="45"/>
-          <span id="locBtn">Expiration Date Calculator</span>
+<div class="container">
+
+    <div id="title" class="text-center">Home</div>
+
+    <div class="row col-md-12 col-sm-12" id="page">
+
+        <div id="opt" class="col-md-12 col-sm-12" >
+          <div id="locBtn">
+              <img class="img-fluid offset-2" (click)="navToExp()" src="assets/expirationdate.png" width="100" height="75"/>
+              <br/>
+              <span id="locBtn" (click)="navToExp()">Expiration Date Calculator</span>
+              <img id="qstar" tooltip="Calculates the expiration date of the medication." placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+          </div>
         </div>
+        <br/><br/>
       
-        <div id="opt" (click)="navToInsulin()"> 
-          <img src="assets/insulin.png" width="45" height="45"/>
-          <span id="locBtn">Insulin Expiration Guide</span>
+        <div id="opt" class="col-md-12 col-sm-12" > 
+          <div id="locBtn">
+              <img class="img-fluid offset-2" (click)="navToInsulin()" src="assets/insulin.png" width="100" height="75"/>
+              <br/>
+              <span id="locBtn" (click)="navToInsulin()">Insulin Expiration Guide</span>
+              <img id="qstar" tooltip="Guide on insulins including their form, storage information, and expiration date." placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+              <div id="vys">
+				  <a target="_blank" href="https://www.medexpiration.com/#plans">
+					Via yearly subscription
+				  </a>
+			  </div>
+          </div>
         </div>
+        <br/><br/>
         
-        <div id="opt" (click)="navToRecall()"> 
-          <img src="assets/recall.png" width="45" height="45"/>
-          <span id="locBtn">Medication Recalls</span>
+        <div id="opt" class="col-md-12 col-sm-12"> 
+          <div id="locBtn">
+              <img class="img-fluid offset-2" (click)="navToRecall()"  src="assets/recall.png" width="100" height="75"/>
+              <br/>
+              <span id="locBtn" (click)="navToRecall()">Medication Recalls</span>
+              <img id="qstar" tooltip=" Information regarding specific recalls-Including manufacturer, lot numbers and reason for recall." placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+              <div id="vys">
+				  <a target="_blank" href="https://www.medexpiration.com/#plans">
+					Via yearly subscription
+				  </a>
+			  </div>
+          </div>
         </div>
-    </div>
-            
+
+    </div>            
 </div>
 

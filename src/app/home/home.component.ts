@@ -11,11 +11,20 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 export class HomeComponent implements OnInit {
 
   showSidebar = true;
+  admin: string
+  fullname: string
   
   constructor(private router: Router, protected storage: LocalStorage) { 
-    this.storage.getItem('user').subscribe((user) => {
-        console.log("res-show",user)    
-    });
+
+    this.storage.getItem("user").subscribe((user)=>{
+        if(user != null){
+          this.admin = user.admin
+          this.fullname = user.fullname
+        }else{
+          this.router.navigate(["/login"])
+        }
+    })
+
   }
   
   ngOnInit() {

@@ -1,0 +1,26 @@
+
+<h6>Med Info</h6>
+<table class="table table-sm table-hover">
+    <tr>
+        <th>Key</th>
+        <th>Generic</th>
+        <th>Brand</th>
+        <th>No. of days</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let med of medinfoList">
+        <td>{{ med.$key }}</td>
+        <td>{{ med.medName }}</td>
+        <td>{{ med.medType }}</td>
+        <td>{{ med.medDate }}</td>
+        <td>
+            <a (click)="onEdit(med)">
+                <i class="fa fa-pencil-square-o"></i>
+            </a>&nbsp;&nbsp;
+            <a (click)="onDelete(med.$key)">
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+</table>
+

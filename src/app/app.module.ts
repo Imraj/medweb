@@ -56,9 +56,26 @@ import { ToastrModule } from "ngx-toastr"
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
+
+
 import { AdmininsulinNewComponent } from './admin/admininsulin/admininsulin-new/admininsulin-new.component';
 import { UsersNewComponent } from './admin/users/users-new/users-new.component';
 import { UsersListComponent } from './admin/users/users-list/users-list.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap"
+
+import { TooltipModule } from "ng2-tooltip-directive";
+import { AdminmedtypeComponent } from './admin/adminmedtype/adminmedtype.component';
+import { AdminmedtypeListComponent } from './admin/adminmedtype/adminmedtype-list/adminmedtype-list.component';
+import { AdminmedtypeNewComponent } from './admin/adminmedtype/adminmedtype-new/adminmedtype-new.component';
+
+import { NgSelectModule } from '@ng-select/ng-select';
+import { EmailsubscriberComponent } from './admin/emailsubscriber/emailsubscriber.component';
+import { EmailsubscriberListComponent } from './admin/emailsubscriber/emailsubscriber-list/emailsubscriber-list.component';
+import { EmailsubscriberNewComponent } from './admin/emailsubscriber/emailsubscriber-new/emailsubscriber-new.component';
+
 
 @NgModule({
   declarations: [
@@ -103,7 +120,13 @@ import { UsersListComponent } from './admin/users/users-list/users-list.componen
     ChangepasswordComponent,
     AdmininsulinNewComponent,
     UsersNewComponent,
-    UsersListComponent
+    UsersListComponent,
+    AdminmedtypeComponent,
+    AdminmedtypeListComponent,
+    AdminmedtypeNewComponent,
+    EmailsubscriberComponent,
+    EmailsubscriberListComponent,
+    EmailsubscriberNewComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +137,11 @@ import { UsersListComponent } from './admin/users/users-list/users-list.componen
     ToastrModule.forRoot(),
     LoadingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    TooltipModule,
+    NgSelectModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

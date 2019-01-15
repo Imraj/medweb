@@ -1,5 +1,5 @@
-<div class="col col-8 offset-2" id="page">
-    <h4>Frequently Asked Question</h4>
+<div class="col col-6 offset-3" id="page">
+    <h4 class="text-center" id="title">Frequently Asked Questions</h4>
     <div class="accordion" id="accordionExample">
         <div class="card" *ngFor="let f of items | async; index as i">
           <div class="card-header" [attr.id]="'heading'+i">
@@ -19,35 +19,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Question 2
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-              <div>Answer </div>
-               
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Question 3
-              </button>
-            </h5>
-          </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-                <div>Answer 3</div>
-            </div>
-          </div>
-        </div> -->
       </div>
 </div>
 

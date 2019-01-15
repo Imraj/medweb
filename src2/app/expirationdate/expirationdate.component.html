@@ -1,0 +1,97 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+
+<div class="col col-md-6 offset-3" id="page">
+
+  <div id="title">
+      USE THE OPTIONS TO SELECT MEDICATION OF INTEREST
+  </div>
+
+  <form>
+    <div class="form-group">
+        <div class="row col-12">
+            <div class="col-11">
+                <label>Brand</label>
+                <!-- <input type="text" class="form-control" name="medtype" [(ngModel)]="expdate.medtype" /> -->
+                <ng-select name="medtype" [(ngModel)]="expdate.medtype" [openOnEnter]="false">
+                    <ng-option *ngFor="let m of items | async" [value]="m.medType">
+                            {{ m.medType }}
+                    </ng-option>
+                </ng-select>
+                
+            </div>
+            <img id="qstar" tooltip="This is a sample tooltip" placement="top" show-delay="500"  src="assets/help.png" width="15" height="15"/> 
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row col-12">
+            <div class="col-11">
+                <label>Generic</label>
+                <!-- <input type="text" class="form-control" name="medname" [(ngModel)]="expdate.medname" /> -->
+                <ng-select name="medname" [(ngModel)]="expdate.medname" [openOnEnter]="false">
+                    <ng-option *ngFor="let m of items | async" [value]="m.medName">
+                        {{ m.medName }}
+                    </ng-option>
+                </ng-select>
+            </div>
+            <img id="qstar" tooltip="This is a sample tooltip" placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row col-12">
+            <div class="col-11">
+                <label>Select Date Medication Was Opened</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                           name="dp" [(ngModel)]="expdate.meddate" ngbDatepicker #d="ngbDatepicker">
+                    
+                    <button class="input-group-addon" (click)="d.toggle()" type="btn btn-primary">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" (click)="calExpirationDate()" id="my-btn-primary" class="btn btn-primary" value="Submit"/>
+    </div>
+
+  </form>
+
+  <div *ngIf="resShow">
+    <div id="res-1">Expires On</div>
+    <div id="res-2" class="text-center">
+        {{ resDate }}
+    </div>
+    <div>
+        <span id="res-3-0">Notes:</span>
+        <p id="res-3-1">{{ resNote }}.</p>
+    </div>
+    <div id="res-4" class="text-center">
+        See Manufacturer's Label for additional details.
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+                <span style="color:red;margin-bottom:3em;">*</span>
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+            </div>
+        </div>
+    </div>
+</footer>   

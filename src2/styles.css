@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+#page{
+    margin-top:3em;
+}
+
+body{
+    background-color:#f6f5f3 ;
+}
+
+qstar{
+    color: red;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color:#323f52 !important;
+}
+

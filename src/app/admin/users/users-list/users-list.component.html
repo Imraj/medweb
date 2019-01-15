@@ -1,36 +1,60 @@
-<p>
-  users-list works!
-</p>
+
 <div class="container">
 
-  <table class="table-sm table-hover">
+  <table class="table-bordered table-sm table-hover">
     <tr>
         <th>Name</th>
         <th>Email Address</th>
-        <th>Admin Priviledge</th>
+
+        <th>Age / Gender</th>
+        <th>Occupation</th>
+        <th>Ethnicity</th>
+        <th>State / Country</th>
+
+        <th>Give Admin Priviledge</th>
         <th>Subscribed</th>
         <th>Give Sub Access</th>
         <th></th>
     </tr>
     <tr *ngFor="let user of userList">
-      <td>{{user.name}}</td>
+      <td>{{user.fullname}}</td>
       <td>{{user.email}}</td>
+      <td>{{ user.age }} / {{ user.gender }}</td>
+      <td>{{ user.occupation }}</td>
+      <td>{{ user.ethnicity }}</td>
+      <td>{{ user.state }} / {{ user.country }}</td>
       <td>
-          <a class="btn">
-            <i class="fa fa-pencil-square-o"></i>
+
+          {{ user.admin }} | 
+
+          <a *ngIf="!user.admin" (click)="makeAdmin(user.email)">
+            <i class="fa fa-user"></i>
           </a>
+
+          <a *ngIf="user.admin" (click)="removeAdmin(user.email)">
+            <i class="fa fa-ban"></i>
+          </a>
+
       </td>
       <td>
-          {{ user.subscribed }}
-      </td>
-      <td *ngIf="!user.subscribed">
-        <a class="btn">
-          <i class="fa fa-pencil-square-o"></i>
+          {{ user.subscribed }} | 
+     
+        <a *ngIf="!user.subscribed" (click)="giveSubscription(user.email)">
+          <i class="fa fa-money"></i>
         </a>
+
+        <a *ngIf="user.subscribed" (click)="removeSubscription(user.email)">
+          <i class="fa fa-ban"></i>
+        </a>
+
       </td>
+
       <td>
-          <a class="btn">
-            <i class="fa fa-trash"></i>
+          <a (click)="onEdit(user)">
+              <i class="fa fa-pencil-square-o"></i>
+          </a>&nbsp;&nbsp;
+          <a (click)="deleteUser(user.$key,user.email)">
+              <i class="fa fa-trash"></i>
           </a>
       </td>
 

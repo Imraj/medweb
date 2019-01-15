@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from "@angular/router"
+import { AngularFireAuth } from 'angularfire2/auth';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-about',
@@ -9,8 +11,23 @@ import { Router } from "@angular/router"
 })
 export class AboutComponent implements OnInit {
 
+  admin : boolean = false
+  fullname: string
+
   showSidebar = true;
-  constructor(public router: Router) { }
+  constructor(public router: Router,private afAuth: AngularFireAuth,private storage: LocalStorage) { 
+
+    this.storage.getItem("user").subscribe((user)=>{
+      if(user != null){
+        this.admin = user.admin
+        this.fullname = user.fullname
+      }
+      else{
+        this.router.navigate(["/login"])
+      }
+    })
+
+  }
 
   ngOnInit() {
   }
@@ -27,5 +44,10 @@ export class AboutComponent implements OnInit {
     this.router.navigate(["/recalls"])
   }
 
+  logout(){
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
+  }
 
 }

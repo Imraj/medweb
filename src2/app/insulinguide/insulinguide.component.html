@@ -1,0 +1,108 @@
+<div id="page">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+    <div class="col col-md-6 offset-3">
+        <div id="title">USE THE OPTIONS TO SELECT INSULIN OF INTEREST</div>
+        <form>
+        
+            <div class="form-group">
+                <div class="row col-12">
+                    <div class="col-11">
+                        <label>Brand</label>
+                        <!-- <input type="text" class="form-control" name="name" [(ngModel)]="insulin.brand" /> -->
+                        <ng-select name="name" [(ngModel)]="insulin.brand">
+                            <ng-option *ngFor="let m of items | async" [value]="m.brand">{{ m.brand }}</ng-option>
+                        </ng-select>
+                    </div>
+                   
+                    <img id="qstar" tooltip="This is a sample tooltip" placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <div class="row col-12">
+                    <div class="col-11">
+                        <label>Generic</label>
+                        <!-- <input type="text" class="form-control" name="name" [(ngModel)]="insulin.manufacturer" />
+                         -->
+                         <ng-select name="name" [(ngModel)]="insulin.generic">
+                            <ng-option *ngFor="let m of items | async" [value]="m.name">{{ m.name }}</ng-option>
+                        </ng-select>
+                    </div>
+                    
+                    <img id="qstar" tooltip="This is a sample tooltip" placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row col-12">
+                    <div class="col-11">
+                        <select name="type" class="form-control" [(ngModel)]="insulin.type">
+                            <option>Select Type</option>
+                            <option *ngFor="let m of items | async">{{ m.type }} </option>
+                        </select>
+                    </div>
+                   
+                    <img id="qstar" tooltip="This is a sample tooltip" placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row col-12">
+                    <div class="col-11">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                    name="dp" [(ngModel)]="insulin.date" ngbDatepicker #d="ngbDatepicker">
+                            
+                            <button class="input-group-addon" (click)="d.toggle()" type="btn btn-primary">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <input type="submit" (click)="calInsulinGuide()" class="btn btn-primary" value="Submit"/>
+            </div>
+        
+        </form>
+
+        <div *ngIf="resShow" >
+            <div id="res-1">Expires On</div>
+            <div id="res-2" class="text-center">
+                {{ resDate }}
+            </div>
+            <div>
+                <span id="res-3-0">Notes:</span>
+                <p id="res-3-1">{{ resNote }}</p>
+            </div>
+            <div id="res-4" class="text-center">
+                See Manufacturer's Label for additional details.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                    <img src="assets/medbottom.png" width="50" height="50" />
+                </div>
+                <div class="col col-4 text-center" (click)="navToInsulin()">
+                    <img src="assets/insulinbottom.png" width="35" height="45" />
+                    <span style="color:red;margin-bottom:3em;">*</span>
+                </div>
+                <div class="col col-4 text-center" (click)="navToRecall()">
+                    <img src="assets/recallbottom.png" width="50" height="50" />
+                </div>
+            </div>
+        </div>
+    </footer> 
+
+

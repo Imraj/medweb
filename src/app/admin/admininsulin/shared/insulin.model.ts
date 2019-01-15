@@ -1,8 +1,9 @@
 export class Insulin {
-    $key: string;
-    name: string;
-    brand: string;
-    type: string;
-    ml: string;
 
+    $key: string;
+    brand: string;
+    type: string; // type
+    date: string;
+    note: string;
+    
 }

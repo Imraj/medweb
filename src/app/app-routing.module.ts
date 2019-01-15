@@ -20,7 +20,6 @@ import { TermsComponent } from "./terms/terms.component";
 import { ExpirationdateComponent } from "./expirationdate/expirationdate.component"
 
 import { UsersComponent } from "./admin/users/users.component"
-//import { SubscribersComponent } from "./admin/subscribers/subscribers.component";
 import { AdministratorsComponent } from "./admin/administrators/administrators.component";
 import { MedinfoComponent } from "./admin/medinfo/medinfo.component";
 import { AdminrecallComponent } from "./admin/adminrecall/adminrecall.component";
@@ -31,10 +30,13 @@ import { AdminprivacyComponent } from "./admin/adminprivacy/adminprivacy.compone
 import { AdmintermsComponent } from "./admin/adminterms/adminterms.component";
 import { AdminfaqsComponent } from "./admin/adminfaqs/adminfaqs.component";
 
+import { AdminmedtypeComponent } from "./admin/adminmedtype/adminmedtype.component"
+import { EmailsubscriberComponent } from "./admin/emailsubscriber/emailsubscriber.component"
+
 const routes: Routes = [
 
   {path:'login',component:LoginComponent},
-  {path:'',component:HomeComponent},
+  {path:'',component:LoginComponent},
   {path:'home',component:HomeComponent},
   {path:'register',component:RegisterComponent},
   {path:'about',component:AboutComponent},
@@ -53,9 +55,10 @@ const routes: Routes = [
   {path:'expirationdate',component:ExpirationdateComponent},
 
   {path:'admin/users',component:UsersComponent},
-  //{path:'admin/subscribers',component:SubscribersComponent},
+  {path:'admin/subscribers',component:EmailsubscriberComponent},
   {path:'admin/administrators',component:AdministratorsComponent},
   {path:'admin/medinfo',component:MedinfoComponent},
+  {path:'admin/medtype',component:AdminmedtypeComponent},
   {path:'admin/recall',component:AdminrecallComponent},
   {path:'admin/insulin',component:AdmininsulinComponent},
   {path:'admin/subscription',component:SubscriptionsComponent},

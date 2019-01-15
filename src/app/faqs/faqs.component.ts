@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
+import { LocalStorage } from '@ngx-pwa/local-storage';
+
 @Component({
   selector: 'app-faqs',
   templateUrl: './faqs.component.html',
@@ -11,10 +13,24 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 export class FaqsComponent implements OnInit {
 
   items: Observable<any[]>;
-  constructor(public db:AngularFireDatabase,public router: Router)
-    {
+
+  admin : boolean = false
+  fullname: string
+
+  constructor(public db:AngularFireDatabase,public router: Router,private storage: LocalStorage)
+  {
       this.items = this.db.list("/faqs").valueChanges()
-    }
+
+      this.storage.getItem("user").subscribe((user)=>{
+        if(user != null){
+          this.admin = user.admin
+          this.fullname = user.fullname
+        }else{
+          this.router.navigate(["/login"])
+        }
+      })
+
+  }
 
   ngOnInit() {
 

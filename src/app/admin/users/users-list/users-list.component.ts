@@ -6,6 +6,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database"
 
 import { LocalStorage } from "@ngx-pwa/local-storage"
 import { Router } from "@angular/router"
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users-list',
@@ -16,7 +17,7 @@ export class UsersListComponent implements OnInit {
 
   userList : User[]
   constructor(public userService: UserService,public db: AngularFireDatabase,
-          public storage: LocalStorage,public router: Router){ 
+          public storage: LocalStorage,public router: Router,public toastr: ToastrService){ 
     
   }
 
@@ -36,6 +37,80 @@ export class UsersListComponent implements OnInit {
         this.router.navigate(["/"])
       }
    })
+  }
+
+  makeAdmin(email: string){
+
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+
+        this.db.list("profiles").update(snapshot.key,{
+           admin : true
+        })
+        this.toastr.success("User Given Admin Priviledge","Success")
+        
+      });
+    });
+
+  }
+
+  removeAdmin(email: string){
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+
+        this.db.list("profiles").update(snapshot.key,{
+           admin : false
+        })
+        this.toastr.success("User Given Admin Priviledge","Success")
+        
+      });
+    });
+  }
+
+  giveSubscription(email: string){
+
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+
+        this.db.list("profiles").update(snapshot.key,{
+           subscribed : true
+        })
+        this.toastr.success("User Subscription Successful","Success")
+        
+      });
+    });
+
+  }
+
+  removeSubscription(email: string){
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+
+        this.db.list("profiles").update(snapshot.key,{
+           subscribed : false
+        })
+        this.toastr.success("User Subscription Successful","Success")
+        
+      });
+    });
+  }
+
+  onEdit(user: User){
+     console.log("onEdit user: ", user)
+     this.userService.selectedUser = user
+  }
+
+  deleteUser(key: string, email: string){
+    alert(key + " " + email)
+    //this.userService.deleteUser(key)
   }
 
 

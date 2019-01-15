@@ -1,14 +1,25 @@
 <div>
     <table class="table table-sm table-hover">
       <tr>
-        <td>Name</td>
-        <td>Brand</td>
-        <td>Type</td>
+        
+        <th>Generic / Brand</th>
+        <th>Type</th>
+        <th>No. of Days</th>
+        <th></th>
+        
       </tr>
       <tr *ngFor="let ins of insulinList">
-          <td>{{ ins.name}}</td>
           <td>{{ ins.brand }}</td>
           <td>{{ ins.type }}</td>
+          <td>{{ ins.date }}</td>
+          <td>
+              <a (click)="onEdit(ins)">
+                <i class="fa fa-pencil-square-o"></i>
+              </a>
+              <a (click)="onDelete(ins.$key)">
+                  <i class="fa fa-trash"></i>
+              </a>
+          </td>
       </tr>
     </table>
 

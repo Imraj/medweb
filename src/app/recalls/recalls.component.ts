@@ -16,13 +16,27 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
   styleUrls: ['./recalls.component.css']
 })
 export class RecallsComponent implements OnInit {
+
+
   items: Observable<any[]>;
+  admin: string
+  fullname: string
+
   constructor(public db:AngularFireDatabase, public router: Router,public storage: LocalStorage) 
   {
     //Check if user is a subscribed member from storage
     this.storage.getItem("user").subscribe((user)=>{
       if(user.subscribed == false){
         this.router.navigate(["/subscription"])
+      }
+    })
+
+    this.storage.getItem("user").subscribe((user)=>{
+      if(user != null){
+        this.admin = user.admin
+        this.fullname = user.fullname
+      }else{
+        this.router.navigate(["/login"])
       }
     })
 

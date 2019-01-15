@@ -1,0 +1,29 @@
+<div>
+    <form #insulinForm="ngForm" (ngSubmit)="onSubmit(insulinForm)">
+        <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="insulinService.selectedInsulin.$key"  class="form-control">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Generic" name="name" #name="ngModel" [(ngModel)]="insulinService.selectedInsulin.name"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Brand" name="brand" #brand="ngModel" [(ngModel)]="insulinService.selectedInsulin.brand"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="type" placeholder="Type" #type="ngModel" [(ngModel)]="insulinService.selectedInsulin.type" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="date" placeholder="Days" #date="ngModel" [(ngModel)]="insulinService.selectedInsulin.date"/>
+        </div>
+
+        <div class="form-group">
+            <textarea required class="form-control" placeholder="Note" name="note" #note="ngModel" [(ngModel)]="insulinService.selectedInsulin.note"></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Add Insulin" class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>

@@ -2,7 +2,8 @@ export class Medinfo {
 
     $key: string;
     medType: string;
-    medName: string;
+    medBrand: string;
     medDate: string;
+    medNote: string;
     
 }

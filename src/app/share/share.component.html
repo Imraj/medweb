@@ -1,5 +1,5 @@
 <div id="page" class="col col-6 offset-3">
-
+  <h4 class="text-center col-md-9 offset-1" id="title">Share with Friends</h4>
   <form #shareForm="ngForm" (ngSubmit)="shareEmail(shareForm)">
       <div class="form-group">
           <input type="text" name="email1" #email1="ngModel" class="form-control" placeholder="Email Address" [(ngModel)]="share.email1"/>
@@ -11,6 +11,10 @@
 
       <div class="form-group">
           <input type="text" name="email3" #email3="ngModel" class="form-control" placeholder="Email Address" [(ngModel)]="share.email3"/>
+      </div>
+
+      <div class="form-group">
+          <textarea class="form-control" name="info" #info="ngModel" placeholder="Message" [(ngModel)]="share.message"></textarea>
       </div>
 
       <div class="form-group">

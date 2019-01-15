@@ -1,0 +1,47 @@
+<div id="cont">
+    <div class="col col-6 offset-3" id="page">
+        <div id="title">TAP THE MEDICATIONS TO LEARN ABOUT CURRENT RECALL </div>
+        <div class="accordion" id="accordionExample">
+            <div class="card" *ngFor="let r of items | async; index as i">
+                <div class="card-header" [attr.id]="'heading'+i">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                      {{ r.medicine }}
+                    </button>
+                  </h5>
+                </div>
+            
+                <div [attr.id]="'collapse'+i" class="collapse" [attr.aria-labelledby]="'heading'+i" data-parent="#accordionExample">
+                  <div class="card-body">
+                     <div>Manufacturer: {{ r.manufacturer }}</div>
+                     <div>Date Recalled : {{ r.recalldate }}</div>
+                     <div>
+                       <span>Reason for recall : </span>
+                       <p>
+                         {{ r.reason }}
+                       </p>
+                     </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+                <span style="color:red;margin-bottom:3em;">*</span>
+            </div>
+        </div>
+    </div>
+</footer> 

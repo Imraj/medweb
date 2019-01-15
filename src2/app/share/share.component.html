@@ -1,0 +1,43 @@
+<div id="page" class="col col-6 offset-3">
+  <h4 class="text-center col-md-9 offset-1" id="title">Contact Us / Feedback</h4>
+  <form #shareForm="ngForm" (ngSubmit)="shareEmail(shareForm)">
+      <div class="form-group">
+          <input type="text" name="email1" #email1="ngModel" class="form-control" placeholder="Email Address" [(ngModel)]="share.email1"/>
+      </div>
+
+      <div class="form-group">
+          <input type="text" name="email2" #email2="ngModel" class="form-control" placeholder="Email Address" [(ngModel)]="share.email2"/>
+      </div>
+
+      <div class="form-group">
+          <input type="text" name="email3" #email3="ngModel" class="form-control" placeholder="Email Address" [(ngModel)]="share.email3"/>
+      </div>
+
+      <div class="form-group">
+          <textarea class="form-control" name="info" #info="ngModel" placeholder="Message" [(ngModel)]="share.message"></textarea>
+      </div>
+
+      <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Share"/>
+      </div>
+
+    </form>
+
+</div>
+
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                    <img src="assets/medbottom.png" width="50" height="50" />
+                </div>
+                <div class="col col-4 text-center" (click)="navToInsulin()">
+                    <img src="assets/insulinbottom.png" width="35" height="45" />
+                </div>
+                <div class="col col-4 text-center" (click)="navToRecall()">
+                    <img src="assets/recallbottom.png" width="50" height="50" />
+                   
+                </div>
+            </div>
+        </div>
+    </footer> 

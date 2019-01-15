@@ -1,0 +1,53 @@
+
+<div class="container">
+
+  <table class="table-bordered table-sm table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+
+        <th>Age / Gender</th>
+        <th>Occupation</th>
+        <th>Ethnicity</th>
+        <th>State / Country</th>
+
+        <th>Give Admin Priviledge</th>
+        <th>Subscribed</th>
+        <th>Give Sub Access</th>
+    </tr>
+    <tr *ngFor="let user of userList">
+      <td>{{user.fullname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{ user.age }} / {{ user.gender }}</td>
+      <td>{{ user.occupation }}</td>
+      <td>{{ user.ethnicity }}</td>
+      <td>{{ user.state }} / {{ user.country }}</td>
+      <td>
+          <a (click)="makeAdmin(user.email)">
+            <i class="fa fa-user"></i>
+          </a>
+      </td>
+      <td>
+          {{ user.subscribed }}
+      </td>
+
+      <td>
+        <a *ngIf="!user.subscribed" (click)="giveSubscription(user.email)">
+          <i class="fa fa-money"></i>
+        </a>
+      </td>
+
+      <td>
+          <!-- <a (click)="onEdit(user)">
+              <i class="fa fa-pencil-square-o"></i>
+          </a>&nbsp;&nbsp;
+          <a (click)="deleteUser(user.$key,user.email)">
+              <i class="fa fa-trash"></i>
+          </a> -->
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>

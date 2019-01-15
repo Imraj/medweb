@@ -1,0 +1,40 @@
+<div class="col col-6 offset-3" id="page">
+    <h4 class="text-center" id="title">Frequently Asked Question</h4>
+    <div class="accordion" id="accordionExample">
+        <div class="card" *ngFor="let f of items | async; index as i">
+          <div class="card-header" [attr.id]="'heading'+i">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                {{ f.question }}
+              </button>
+            </h5>
+          </div>
+      
+          <div [attr.id]="'collapse'+i" class="collapse show" [attr.aria-labelledby]="'heading'+i" data-parent="#accordionExample">
+            <div class="card-body">
+               <div>
+                 {{ f.answer }}
+               </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-center" (click)="navToExpirationdate()">
+                <img src="assets/medbottom.png" width="50" height="50" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToInsulin()">
+                <img src="assets/insulinbottom.png" width="35" height="45" />
+            </div>
+            <div class="col col-4 text-center" (click)="navToRecall()">
+                <img src="assets/recallbottom.png" width="50" height="50" />
+               
+            </div>
+        </div>
+    </div>
+</footer> 

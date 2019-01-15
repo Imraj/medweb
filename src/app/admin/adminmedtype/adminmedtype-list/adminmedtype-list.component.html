@@ -1,0 +1,15 @@
+
+<table class="table table-sm table-hover">
+    <tr *ngFor="let m of medList">
+        <td>{{ m.medname }}</td>
+        <td>
+            <a (click)="onEdit(m)">
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a (click)="onDelete(m.$key)">
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+
+    </tr>
+</table>

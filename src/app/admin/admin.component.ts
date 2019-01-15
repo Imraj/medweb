@@ -10,7 +10,21 @@ import { Router } from "@angular/router"
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public storage: LocalStorage,public router: Router) { }
+  admin : boolean = false
+  fullname: string
+
+  constructor(public storage: LocalStorage,public router: Router) {
+
+    this.storage.getItem("user").subscribe((user)=>{
+      if(user != null){
+        this.admin = user.admin
+        this.fullname = user.fullname
+      }else{
+        this.router.navigate(["/login"])
+      }
+    })
+
+  }
 
   ngOnInit() {
     this.storage.getItem("user").subscribe((user)=>{

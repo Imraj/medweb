@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as $ from "jquery"
 import { Router, NavigationStart } from "@angular/router"
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { LocalStorage } from '@ngx-pwa/local-storage';
@@ -14,12 +15,27 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 export class AppComponent {
   admin : boolean = false
   fullname: string
+  
   showSidebar : boolean = true
+  pgtitle = "Med Expiration : Safely Administer Medications"
+
   constructor(private router: Router,private afAuth: AngularFireAuth,private storage: LocalStorage) 
   { 
+
+    this.storage.getItem("user").subscribe((user)=>{
+      if(user != null){
+        this.admin = user.admin
+        this.fullname = user.fullname
+      }else{
+        this.router.navigate(["/login"])
+      }
+    })
+
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
          if(event.url == "/login"){
+           this.showSidebar = false
+         }else if(event.url == "/"){
            this.showSidebar = false
          }else if(event.url == "/register"){
            this.showSidebar = false
@@ -30,23 +46,22 @@ export class AppComponent {
         }else{
           this.showSidebar = true
         }
-         
       }
-      
-    
-    
     });
 
-    this.storage.getItem("user").subscribe((user)=>{
-       if(user == null){
-         this.router.navigate(["/login"])
-       }else{
-        this.admin = user.admin
-        this.fullname = user.fullname
-       }
-    })
-
-
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart) {
+         if(event.url == "/insulinguide"){
+           this.pgtitle = "Insulin Guide"
+         }else if(event.url == "/recalls"){
+           this.pgtitle = "Recalls"
+         }else if(event.url == "/expirationdate"){
+           this.pgtitle = "Expiration Date"
+         }else{
+           this.pgtitle = "Med Expiration : Safely Administer Medications"
+         }
+      }
+    });
 
   }
   
@@ -55,10 +70,12 @@ export class AppComponent {
   }
 
   title = 'medweb';
+
   
-  private _opened: boolean = false;
+  
+  public _opened: boolean = false;
  
-  private _toggleSidebar() {
+  public _toggleSidebar() {
     this._opened = !this._opened;
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InsulinService } from "../shared/insulin.service";
 import { NgForm } from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admininsulin-new',
@@ -9,7 +10,7 @@ import { NgForm } from "@angular/forms";
 })
 export class AdmininsulinNewComponent implements OnInit {
 
-  constructor(public insulinService: InsulinService) { 
+  constructor(public insulinService: InsulinService,public toastr: ToastrService) { 
 
   }
 
@@ -18,8 +19,12 @@ export class AdmininsulinNewComponent implements OnInit {
   }
 
   onSubmit(insulinForm: NgForm){
-    this.insulinService.insertInsulin(insulinForm.value)
+    if(insulinForm.value.$key == null)
+      this.insulinService.insertInsulin(insulinForm.value)
+    else
+      this.insulinService.updateInsulin(insulinForm.value)
     this.resetForm(insulinForm)
+    this.toastr.success("Insulin Added Successfully","Success")
   }
 
   resetForm(insulinForm? : NgForm){
@@ -28,10 +33,10 @@ export class AdmininsulinNewComponent implements OnInit {
 
      this.insulinService.selectedInsulin = {
        $key: null,
-       name: '',
-       brand: '',
-       type: '',
-       ml:''
+       type: '',    
+       date: '',
+       note: '',
+       brand: ''
      }
   }
 
