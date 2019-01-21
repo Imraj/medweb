@@ -11,9 +11,9 @@
         <th>Ethnicity</th>
         <th>State / Country</th>
 
-        <th>Give Admin Priviledge</th>
-        <th>Subscribed</th>
-        <th>Give Sub Access</th>
+        <!-- <th>Admin ? // Make / Remove Admin </th> -->
+        <!-- <th>Subscribed?  // Give /Cancel Subscription</th> -->
+        <!-- <th>Newsletter? // Give / Cancel Subscription</th> -->
         <th></th>
     </tr>
     <tr *ngFor="let user of userList">
@@ -23,7 +23,7 @@
       <td>{{ user.occupation }}</td>
       <td>{{ user.ethnicity }}</td>
       <td>{{ user.state }} / {{ user.country }}</td>
-      <td>
+      <!-- <td>
 
           {{ user.admin }} | 
 
@@ -35,8 +35,8 @@
             <i class="fa fa-ban"></i>
           </a>
 
-      </td>
-      <td>
+      </td> -->
+      <!-- <td>
           {{ user.subscribed }} | 
      
         <a *ngIf="!user.subscribed" (click)="giveSubscription(user.email)">
@@ -47,7 +47,7 @@
           <i class="fa fa-ban"></i>
         </a>
 
-      </td>
+      </td> -->
 
       <td>
           <a (click)="onEdit(user)">

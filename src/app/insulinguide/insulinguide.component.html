@@ -5,46 +5,15 @@
         <div id="title">USE THE OPTIONS TO SELECT INSULIN OF INTEREST</div>
         <form>
         
-            <!-- <div class="form-group">
-                <div class="row col-12">
-                    <div class="col-11">
-                        <label>Brand</label>
-                        
-                        <ng-select name="name" [(ngModel)]="insulin.brand">
-                            <ng-option *ngFor="let m of items | async" [value]="m.brand">{{ m.brand }}</ng-option>
-                        </ng-select>
-                    </div>
-                   
-                    <img id="qstar" tooltip="Company name of medication." placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
-                </div>
-            </div> -->
-        
             <div class="form-group">
                 <div class="row col-12">
                     <div class="col-11">
                         <label>Enter Brand or Generic Medication Name</label>
-                        <!-- <input type="text" class="form-control" name="name" [(ngModel)]="insulin.manufacturer" />
-                         -->
-                         <ng-select name="name" [(ngModel)]="insulin.generic">
-                            <ng-option *ngFor="let m of items | async" [value]="m.name">{{ m.name }}</ng-option>
-                        </ng-select>
+                    
+                        <ng2-completer [(ngModel)]="insulin.brand" name="brand" [placeholder]="brandplaceholder" [datasource]="brands" [minSearchLength]="1"></ng2-completer>
                     </div>
                     
                     <img id="qstar" tooltip="Chemical name of the medication." placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="row col-12">
-                    <div class="col-11">
-                        <select name="type" class="form-control" [(ngModel)]="insulin.type">
-                            <option>Select Type</option>
-                            <option *ngFor="let m of items | async">{{ m.type }} </option>
-                        </select>
-                    </div>
-                   
-                    <img id="qstar" tooltip="This is a sample tooltip" placement="top" show-delay="500" src="assets/help.png" width="15" height="15"/>
-                    
                 </div>
             </div>
 
@@ -76,6 +45,16 @@
             <div id="res-2" class="text-center">
                 {{ resDate }}
             </div>
+            <div>
+                <span id="res-3-0">Notes:</span>
+                <p id="res-3-1">{{ resNote }}</p>
+            </div>
+            <div id="res-4" class="text-center">
+                See Manufacturer's Label for additional details.
+            </div>
+        </div>
+
+        <div *ngIf="notResShow">
             <div>
                 <span id="res-3-0">Notes:</span>
                 <p id="res-3-1">{{ resNote }}</p>

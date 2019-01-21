@@ -7,6 +7,14 @@
     background-color: #323f52;
   }
 
+  :host >>> .completer-input{
+    width: 100%;
+  }
+  :host >>> .completer-dropdown {
+    width: 100% !important;
+    position: relative !important;
+}
+
 #title{
   color: #8ebac6;
   border-bottom:2px solid red;

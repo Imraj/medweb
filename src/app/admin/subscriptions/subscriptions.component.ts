@@ -57,8 +57,30 @@ export class SubscriptionsComponent implements OnInit {
             subscribed: false,
         })
 
-        //this.toastr.success("User subscription status changed","Success")
+        this.toastr.success("User subscription status changed","Success")
         
+      });
+    });
+
+  }
+
+  enableSub(email: string){
+
+    var today = new Date()
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+        this.db.list("profiles").update(snapshot.key,{
+            subscribed: true,
+            subscribed_date: dateTime
+        })
+
+        //this.toastr.success("User subscription status changed","Success")
       });
     });
 

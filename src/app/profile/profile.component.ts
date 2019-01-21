@@ -145,13 +145,19 @@ export class ProfileComponent implements OnInit {
          this.subEmail = user.email
          this.subFullname = user.fullname
 
-         this.db.list("/newsletter").push({"email":this.subEmail,"fullname":this.subFullname})
+         const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(user.email))
+         .snapshotChanges()
+         .subscribe(snapshots => {
+           snapshots.forEach(snapshot => {
+             console.log('Snapshot Key: ', snapshot.key);
+             this.db.list("profiles").update(snapshot.key,{
+                 newsletter: true,
+             })
+             this.toastr.success("User subscription status changed","Success")
+           });
+         });
       })
       
-  }
-
-  changePassword(){
-    let password = this.profile.password
   }
 
   navToChangepwd(){
@@ -170,6 +176,12 @@ export class ProfileComponent implements OnInit {
 
   navToRecall(){
     this.router.navigate(["/recalls"])
+  }
+
+  logout(){
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
   }
 
 }

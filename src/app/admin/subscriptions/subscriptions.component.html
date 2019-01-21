@@ -1,20 +1,30 @@
 <div class="container" id="adminpage" >
 
-    <table class="table table-sm table-hover">
+    <table class="table-bordered table-sm table-hover">
+        <tr>
+            <td>Fullname</td>
+            <td>Email</td>
+            <td>Subscribed</td>
+            <td>Subscribed Date</td>
+            <td></td>
+        </tr>
         <tr *ngFor="let sub of subList; let i = index">
           <td>{{ sub.fullname }}</td>
           <td>{{ sub.email }}</td>
+          <td>{{ sub.subscribed }}</td>
           <td>{{ sub.subscribed_date }}</td>
           <td>
-            <span class="switch" (click)="disableSub(sub.email)">
-                <input type="checkbox" class="switch" id="{{i}}">
-                <label for="{{i}}">Toggle</label>
+            
+            <span class="switch" *ngIf="!sub.subscribed" (click)="enableSub(sub.email)">
+                <input type="checkbox" value="true" class="switch" id="{{i}}">
+                <label for="{{i}}">Give Subscription</label>
             </span>
-          </td>
-          <td>
-              <a class="btn" (click)="onDelete(sub.$key)">
-                  <i class="fa fa-trash"></i>
-              </a>
+
+            <span class="switch" *ngIf="sub.subscribed" (click)="disableSub(sub.email)">
+                <input type="checkbox" checked class="switch" id="{{i}}">
+                <label for="{{i}}">Cancel Subscription</label>
+            </span>
+
           </td>
         </tr>
     </table>

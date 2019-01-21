@@ -79,37 +79,40 @@ export class LoginComponent implements OnInit {
     else{
       this.loading = true
       this.afAuth.auth.signInWithEmailAndPassword(email,pwd).then((user)=>{
-  
+        
         const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email)).valueChanges()
               profile.subscribe(data => {
               
-                let user = {"age":data[0]["age"],
-                            "admin":data[0]["admin"],
-                            "email":data[0]["email"],
-                            "ethnicity":data[0]["ethnicity"],
-                            "fullname":data[0]["fullname"],
-                            "gender":data[0]["gender"],
-                            "occupation":data[0]["occupation"],
-                            "state":data[0]["state"],
-                            "country":data[0]["country"],
-                            "subscribed":data[0]["subscribed"],
-                            "subscribed_date":data[0]["subscribed_date"]
+                let user = {
+                      "age":data[0]["age"],
+                      "admin":data[0]["admin"],
+                      "email":data[0]["email"],
+                      "ethnicity":data[0]["ethnicity"],
+                      "fullname":data[0]["fullname"],
+                      "gender":data[0]["gender"],
+                      "occupation":data[0]["occupation"],
+                      "state":data[0]["state"],
+                      "country":data[0]["country"],
+                      "subscribed":data[0]["subscribed"],
+                      "subscribed_date":data[0]["subscribed_date"]
                 }
                 
-                console.log("str-user",user)
+                //console.log("str-user",user)
                 this.storage.setItem("user",user).subscribe(()=>{})
   
+                this.loading = false
+                if(user != null){
+                  this.router.navigate(["/home"])
+                }else{
+                  this.toastr.error("Invalid Email Address or Password","Error")
+                }
+
               },err=>{
                 console.log("Err")
                 console.log(err)
               });
 
-        this.loading = false
-        if(user != null){
-          this.router.navigate(["/home"])
-        }else{
-          this.toastr.error("Invalid Email Address or Password","Error")
-        }
+
        
       }).catch((res)=>{
           console.log("res-err",res)

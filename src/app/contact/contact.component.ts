@@ -16,6 +16,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class ContactComponent implements OnInit {
 
+  public loading = false;
+
   contact = {
     type:"App Feedback",
     subject : "",
@@ -46,6 +48,7 @@ export class ContactComponent implements OnInit {
   sendMessage(contactForm: NgForm){
 
     console.log("Sending Message ...")
+    this.loading = true
 
     this.storage.getItem("user").subscribe((user)=>{
       this.from = user.email
@@ -62,12 +65,14 @@ export class ContactComponent implements OnInit {
       this.http.get("http://medexp.000webhostapp.com/contact.php",{params})
           .subscribe(
             data => {
+               this.loading = false
                this.toastr.success("Message Sent","Success")
             },
             error => {
+                this.loading = false
                 console.log("sending msg error:")
                 console.log(error)
-                this.toastr.error("Error sending message", "Error2")
+                this.toastr.error("Error sending message", "Error")
             }
           )
     })

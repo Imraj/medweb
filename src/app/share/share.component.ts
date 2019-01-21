@@ -9,6 +9,8 @@ import {NgForm} from "@angular/forms"
 import { ToastrService } from "ngx-toastr"
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'app-share',
   templateUrl: './share.component.html',
@@ -16,6 +18,7 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 })
 export class ShareComponent implements OnInit {
 
+  public loading = false;
 
   share = {
     email1:"",
@@ -26,8 +29,10 @@ export class ShareComponent implements OnInit {
 
   admin: string
   fullname: string
+  
 
-  constructor(public http: HttpClient,public router: Router,public toastr: ToastrService,protected storage: LocalStorage) 
+  constructor(public http: HttpClient,public router: Router,public toastr: ToastrService,
+    protected storage: LocalStorage, private afAuth: AngularFireAuth) 
   {
     this.storage.getItem("user").subscribe((user)=>{
       if(user != null){
@@ -43,27 +48,39 @@ export class ShareComponent implements OnInit {
   }
 
   shareEmail(shareForm: NgForm){
+    this.loading = true;
+
     let email1 = this.share.email1
     let email2 = this.share.email2
     let email3 = this.share.email3
     let message = this.share.message
 
-    const params = new HttpParams().set("email1",email1)
-                                   .set("email2",email2)
-                                   .set("message",message)
-                                   .set("email3",email3)
+   
   
-    this.http.get("http://medexp.000webhostapp.com/share.php",{params})
-        .subscribe(
-          data => {
-              this.toastr.success("Message Sent","Success")
-          },
-          error => {
-              console.log("sending msg error:")
-              console.log(error)
-              this.toastr.error("Error sending message", "Error")
-          }
-        )
+    this.storage.getItem("user").subscribe((user)=>{
+
+      const params = new HttpParams().set("email1",email1)
+      .set("email2",email2)
+      .set("message",message)
+      .set("email3",email3)
+      .set("from",user.email)
+
+      this.http.get("http://medexp.000webhostapp.com/share.php",{params})
+      .subscribe(
+        data => {
+            this.loading = false
+            this.toastr.success("Message Sent","Success")
+        },
+        error => {
+            this.loading = false
+            console.log(error)
+            this.toastr.error("Error sending message", "Error")
+        }
+      )
+
+    })
+                                   
+    
         
   }
 
@@ -77,6 +94,12 @@ export class ShareComponent implements OnInit {
 
   navToRecall(){
     this.router.navigate(["/recalls"])
+  }
+
+  logout(){
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
   }
 
 }

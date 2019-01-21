@@ -47,20 +47,36 @@ export class EmailsubscriberListComponent implements OnInit {
     this.subscriptionService.deleteSubscription(key)
   }
 
-  disableSub(email: string){
+  disableEmailSub(email: string){
 
     const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
     .snapshotChanges()
     .subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-        console.log('Snapshot Key: ', snapshot.key);
-        this.db.list("profiles").update(snapshot.key,{
-            subscribed: false,
-        })
 
-        //this.toastr.success("User subscription status changed","Success")
-        
+      snapshots.forEach(snapshot => {
+        this.db.list("profiles").update(snapshot.key,{
+            newsletter: false,
+        })
       });
+      this.toastr.success("User unsubscribed from newsletter","Success")
+
+    });
+
+  }
+
+  enableEmailSub(email: string){
+
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+
+      snapshots.forEach(snapshot => {
+        this.db.list("profiles").update(snapshot.key,{
+            newsletter: true,
+        }) 
+      });
+      //this.toastr.success("User subscripted to newsletter","Success")
+
     });
 
   }

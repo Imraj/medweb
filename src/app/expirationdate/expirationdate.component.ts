@@ -12,6 +12,8 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
+import { CompleterService, CompleterData } from 'ng2-completer';
+
 @Component({
   selector: 'app-expirationdate',
   templateUrl: './expirationdate.component.html',
@@ -19,9 +21,13 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 })
 export class ExpirationdateComponent implements OnInit {
   items: Observable<any[]>;
+  medtypes: Observable<any[]>;
 
   loading: boolean = false
+
   resShow: boolean = false
+  notResShow: boolean = false
+
   resDate = new Date()
   resNote: string = ""
   extraDays = 0
@@ -30,18 +36,48 @@ export class ExpirationdateComponent implements OnInit {
 
   expdate = {
     medtype: "",
-    medname: "",
+    medbrand: "",
     meddate: ""
   }
 
   admin : boolean = false
   fullname: string
 
-  constructor(public db:AngularFireDatabase,public router: Router,
+
+  brands: String[] = [];
+  types: String[] = [];
+  typeplaceholder : string;
+  brandplaceholder : string;
+
+  constructor(public db:AngularFireDatabase,public router: Router,public completerService: CompleterService,
     public afAuth: AngularFireAuth,private toastr: ToastrService,public storage: LocalStorage)
     {
       this.items = this.db.list("/medications").valueChanges()
-      
+      this.medtypes = this.db.list("/medtype").valueChanges()
+
+      this.typeplaceholder = "Type"
+      this.brandplaceholder = "Brand / Generic"
+
+      db.list("medtype").valueChanges()
+        .subscribe((snapshot)=>{
+          snapshot.forEach(element => {
+            const mObject = <any>element
+            this.types.push(
+              mObject.medname
+            )
+          })
+        })
+
+      db.list("medications").valueChanges()
+        .subscribe((snapshot)=>{
+          snapshot.forEach(element => {
+             const mObject = <any>element
+             this.brands.push(
+               mObject.medBrand
+             )
+          })
+      })
+
       this.storage.getItem("user").subscribe((user)=>{
         if(user != null){
           this.admin = user.admin
@@ -73,8 +109,8 @@ export class ExpirationdateComponent implements OnInit {
   calExpirationDate(){
     var app = this
     console.log("cal",this.expdate)
-    if(this.expdate.meddate == null || this.expdate.medname == null || this.expdate.medtype ==null
-      || this.expdate.meddate == "" || this.expdate.medname == "" || this.expdate.medtype == "" ){
+    if(this.expdate.meddate == null || this.expdate.medbrand == null || this.expdate.medtype ==null
+      || this.expdate.meddate == "" || this.expdate.medbrand == "" || this.expdate.medtype == "" ){
 
       this.toastr.error("All fields are required","Missing Field")
 
@@ -82,7 +118,7 @@ export class ExpirationdateComponent implements OnInit {
       this.loading = true
 
       let f_meddate = this.expdate.meddate
-      let f_medname = this.expdate.medname
+      let f_medname = this.expdate.medbrand
       let f_medtype = this.expdate.medtype
 
       this.db.list("/medications",ref=>ref.orderByChild("medName").equalTo(f_medname))
@@ -96,16 +132,23 @@ export class ExpirationdateComponent implements OnInit {
                 if(d["medName"] == f_medname && d["medType"] == f_medtype){
                   console.log("correct1")
                   app.extraDays = parseInt(d["medDate"])
-                  let openDay = app.expdate.meddate["day"]
-                  let openMonth = app.expdate.meddate["month"]
-                  let openYear = app.expdate.meddate["year"]
-                  //console.log(openYear+"-"+openMonth+"-"+openDay)
-                  let rDate = new Date(openYear+"-"+openMonth+"-"+openDay);
-                  rDate.setDate(rDate.getDate() + app.extraDays)
+                  if(app.extraDays < 0){
+                    app.resNote = d["medNote"]
+                    this.notResShow = true
+                  }
+                  else{
+                    let openDay = app.expdate.meddate["day"]
+                    let openMonth = app.expdate.meddate["month"]
+                    let openYear = app.expdate.meddate["year"]
+                    //console.log(openYear+"-"+openMonth+"-"+openDay)
+                    let rDate = new Date(openYear+"-"+openMonth+"-"+openDay);
+                    rDate.setDate(rDate.getDate() + app.extraDays)
+                    
+                    app.resDate = rDate
+                    app.resNote = d["medNote"]
+                    this.resShow = true
+                  }
                   
-                  app.resDate = rDate
-                  app.resNote = d["medNote"]
-                  this.resShow = true
                 }
                 
               } 

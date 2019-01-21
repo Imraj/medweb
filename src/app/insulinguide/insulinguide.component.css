@@ -3,6 +3,14 @@
   height: 100%;   
 }
 
+:host >>> .completer-input{
+  width: 100%;
+}
+:host >>> .completer-dropdown {
+  width: 100% !important;
+  position: relative !important;
+}
+
 .footer {
     position: fixed;
     bottom: 0;

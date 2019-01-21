@@ -4,18 +4,25 @@
       <tr>
         <th>Fullname</th>
         <th>Email Address</th>
+        <th>Is Admin</th>
+        <th></th>
       </tr>
       <tr *ngFor="let admin of adminList">
         <td>{{ admin.fullname }}</td>
         <td>{{ admin.email }}</td>
+        <td>{{ admin.admin }}</td>
         <td>
-            <a (click)="onEdit(admin)">
-                <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <a (click)="onDelete(admin.$key)">
-                <i class="fa fa-trash"></i>
-            </a>
-        </td>
+            <span class="switch" *ngIf="!admin.admin" (click)="makeAdmin(sub.email)">
+                <input type="checkbox" value="true" class="switch" id="{{i}}">
+                <label for="{{i}}">Make Admin</label>
+            </span>
+
+            <span class="switch" *ngIf="admin.admin" (click)="removeAdmin(sub.email)">
+                <input type="checkbox" checked class="switch" id="{{i}}">
+                <label for="{{i}}">Revoke Admin</label>
+            </span>
+
+          </td>
       </tr>
 
   </table>

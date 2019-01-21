@@ -5,6 +5,8 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'app-faqs',
   templateUrl: './faqs.component.html',
@@ -17,7 +19,7 @@ export class FaqsComponent implements OnInit {
   admin : boolean = false
   fullname: string
 
-  constructor(public db:AngularFireDatabase,public router: Router,private storage: LocalStorage)
+  constructor(public db:AngularFireDatabase,public router: Router,private afAuth: AngularFireAuth,private storage: LocalStorage)
   {
       this.items = this.db.list("/faqs").valueChanges()
 
@@ -46,6 +48,12 @@ export class FaqsComponent implements OnInit {
 
   navToRecall(){
     this.router.navigate(["/recalls"])
+  }
+
+  logout(){
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
   }
 
 }

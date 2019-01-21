@@ -4,6 +4,7 @@ import { AdministratorService } from "./shared/administrator.service"
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database"
 import { LocalStorage } from "@ngx-pwa/local-storage"
 import { Router } from "@angular/router"
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-administrators',
@@ -13,7 +14,7 @@ import { Router } from "@angular/router"
 export class AdministratorsComponent implements OnInit {
 
   adminList : Administrator[]
-  constructor(public db:AngularFireDatabase,public storage: LocalStorage,
+  constructor(public db:AngularFireDatabase,public storage: LocalStorage, public toastr: ToastrService,
       public router: Router, public adminService: AdministratorService) 
   {
 
@@ -31,14 +32,46 @@ export class AdministratorsComponent implements OnInit {
       this.adminList = []  
       item.forEach(element=>{
          var y = element.payload.toJSON();
-         y["key"] = element.key
-         this.adminList.push(y as Administrator)
+          y["key"] = element.key
+          this.adminList.push(y as Administrator)
+         
+         
       })
     })
+
   }
   
-  onDelete(key: string){
-    this.adminService.deleteAdministrator(key)
+ 
+  makeAdmin(email: string){
+
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+
+        this.db.list("profiles").update(snapshot.key,{
+           admin : true
+        })
+        this.toastr.success("User Given Admin Priviledge","Success")
+        
+      });
+    });
+
+  }
+
+  removeAdmin(email: string){
+    const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email))
+    .snapshotChanges()
+    .subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+
+        this.db.list("profiles").update(snapshot.key,{
+           admin : false
+        })
+        this.toastr.success("User Given Admin Priviledge","Success")
+        
+      });
+    });
   }
   
 

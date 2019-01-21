@@ -1,10 +1,19 @@
 <div id="page" class="col col-6 offset-3">
 
-  <div>
+  <div *ngIf="subscribed">
+    <div>
+            This Account is billed to {{ card_brand }} Card ending in {{ card_last4 }} and expires on
+            {{card_exp_month}}/{{card_exp_year}}.
+    </div>
+    
+    <button class="btn btn-outline-primary" (click)="changeCard()">Change Card</button>
+  </div>
+
+  <div *ngIf="!subscribed">
      Annual Subscription of $9.99 is required to use the insulin and recall feature. Click the
      button below to subscribe now.
+     <button (click)="openCheckout()" class="btn btn-primary">Subscribe Now</button>
   </div>
-  <button (click)="openCheckout()" class="btn btn-primary">Subscribe Now</button>
 
 </div>
 

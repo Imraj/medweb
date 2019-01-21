@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'app-recalls',
   templateUrl: './recalls.component.html',
@@ -22,7 +24,8 @@ export class RecallsComponent implements OnInit {
   admin: string
   fullname: string
 
-  constructor(public db:AngularFireDatabase, public router: Router,public storage: LocalStorage) 
+  constructor(public db:AngularFireDatabase, public router: Router,public storage: LocalStorage,
+    private afAuth: AngularFireAuth) 
   {
     //Check if user is a subscribed member from storage
     this.storage.getItem("user").subscribe((user)=>{
@@ -56,6 +59,12 @@ export class RecallsComponent implements OnInit {
 
   navToRecall(){
     this.router.navigate(["/recalls"])
+  }
+
+  logout(){
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
   }
 
 }

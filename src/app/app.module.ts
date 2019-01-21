@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -76,6 +77,7 @@ import { EmailsubscriberComponent } from './admin/emailsubscriber/emailsubscribe
 import { EmailsubscriberListComponent } from './admin/emailsubscriber/emailsubscriber-list/emailsubscriber-list.component';
 import { EmailsubscriberNewComponent } from './admin/emailsubscriber/emailsubscriber-new/emailsubscriber-new.component';
 
+import { Ng2CompleterModule } from "ng2-completer";
 
 @NgModule({
   declarations: [
@@ -141,7 +143,8 @@ import { EmailsubscriberNewComponent } from './admin/emailsubscriber/emailsubscr
     BrowserAnimationsModule,
     NgbModule,
     TooltipModule,
-    NgSelectModule
+    NgSelectModule,
+    Ng2CompleterModule,
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
+import { CompleterService, CompleterData } from 'ng2-completer'
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'app-insulinguide',
   templateUrl: './insulinguide.component.html',
@@ -18,24 +21,29 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 export class InsulinguideComponent implements OnInit {
 
   loading: boolean = false
+
   resShow: boolean = false
+  notResShow: boolean = false
+
   resDate  = new Date()
   resNote : string = ""
   extraDays = 0
 
   insulin = {
     brand: "",
-    generic: "",
-    type: "",
     date:""
   }
 
   admin: string
   fullname: string
 
+  brands: String[] = [];
+  brandplaceholder : string;
+
   items: Observable<any[]>;
   constructor(public db:AngularFireDatabase,public router: Router,
-              private toastr: ToastrService,public storage: LocalStorage) 
+              private toastr: ToastrService,public storage: LocalStorage,
+              public completerService: CompleterService,private afAuth: AngularFireAuth) 
   {
 
     this.storage.getItem("user").subscribe((user)=>{
@@ -51,6 +59,16 @@ export class InsulinguideComponent implements OnInit {
       }else{
         this.router.navigate(["/login"])
       }
+    })
+
+    this.brandplaceholder = "Brand / Generic"
+
+    db.list("insulinguides").valueChanges()
+    .subscribe((snapshot)=>{
+      snapshot.forEach(element => {
+         const mObject = <any>element
+         this.brands.push( mObject.brand )
+      })
     })
 
   }
@@ -73,8 +91,8 @@ export class InsulinguideComponent implements OnInit {
 
   calInsulinGuide(){
     var app = this
-    if(this.insulin.brand == "" || this.insulin.type =="" || this.insulin.generic== "" || this.insulin.date ==""
-    || this.insulin.brand == null || this.insulin.type == null || this.insulin.generic == null || this.insulin.date == null )
+    if(this.insulin.brand == "" || this.insulin.date ==""
+    || this.insulin.brand == null || this.insulin.date == null )
     {
       this.toastr.error("All fields are required","Missing Field")
     }else{
@@ -82,8 +100,6 @@ export class InsulinguideComponent implements OnInit {
       
 
       let f_brand = this.insulin.brand
-      let f_type = this.insulin.type
-      let f_generic = this.insulin.generic
       let f_date = this.insulin.date
 
       console.log("this.insulin",this.insulin)
@@ -97,29 +113,45 @@ export class InsulinguideComponent implements OnInit {
               app.loading = false
               
               for(let i=0;i<data.length;i++){
-                let d = data[i];
-                if(d["type"] == f_type && d["name"] == f_generic){
+                  let d = data[i];
+                
                   console.log("d-res",d)
                   app.extraDays = parseInt(d["date"])
-                  let openDay = app.insulin.date["day"]
-                  let openMonth = app.insulin.date["month"]
-                  let openYear = app.insulin.date["year"]
-                  //console.log(openYear+"-"+openMonth+"-"+openDay)
-                  let rDate = new Date(openYear+"-"+openMonth+"-"+openDay);
-                  rDate.setDate(rDate.getDate() + app.extraDays)
-                  console.log("rDate",rDate)
-                  app.resDate = rDate
-                  app.resNote = d["note"]
-                  console.log("d[note]",d["note"])
-                  this.resShow = true
-                }
+
+                  if(app.extraDays < 0){
+
+                    app.resNote = d["note"]
+                    this.notResShow = true
+
+                  }else{
+                    let openDay = app.insulin.date["day"]
+                    let openMonth = app.insulin.date["month"]
+                    let openYear = app.insulin.date["year"]
+                    //console.log(openYear+"-"+openMonth+"-"+openDay)
+                    let rDate = new Date(openYear+"-"+openMonth+"-"+openDay);
+                    rDate.setDate(rDate.getDate() + app.extraDays)
+                    console.log("rDate",rDate)
+                    app.resDate = rDate
+                    app.resNote = d["note"]
+                    console.log("d[note]",d["note"])
+                    this.resShow = true
+                  }
+
+                  
                 
-              } 
+                
+            } 
           })
 
     }
    
 
+  }
+
+  logout(){
+    this.afAuth.auth.signOut()
+    this.storage.removeItem('user').subscribe(() => {});
+    this.router.navigate(["/login"])
   }
 
 }
