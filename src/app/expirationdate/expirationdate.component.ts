@@ -68,15 +68,15 @@ export class ExpirationdateComponent implements OnInit {
           })
         })
 
-      db.list("medications").valueChanges()
-        .subscribe((snapshot)=>{
-          snapshot.forEach(element => {
-             const mObject = <any>element
-             this.brands.push(
-               mObject.medBrand
-             )
-          })
-      })
+      // db.list("medications").valueChanges()
+      //   .subscribe((snapshot)=>{
+      //     snapshot.forEach(element => {
+      //        const mObject = <any>element
+      //        this.brands.push(
+      //          mObject.medBrand
+      //        )
+      //     })
+      // })
 
       this.storage.getItem("user").subscribe((user)=>{
         if(user != null){
@@ -121,7 +121,7 @@ export class ExpirationdateComponent implements OnInit {
       let f_medname = this.expdate.medbrand
       let f_medtype = this.expdate.medtype
 
-      this.db.list("/medications",ref=>ref.orderByChild("medName").equalTo(f_medname))
+      this.db.list("/medications",ref=>ref.orderByChild("medBrand").equalTo(f_medname))
           .valueChanges()
           .subscribe(data=>{
               
@@ -129,7 +129,7 @@ export class ExpirationdateComponent implements OnInit {
               console.log("Exp-Data-web2",data,data.length)
               for(let i=0;i<data.length;i++){
                 let d = data[i];
-                if(d["medName"] == f_medname && d["medType"] == f_medtype){
+                if(d["medBrand"] == f_medname && d["medType"] == f_medtype){
                   console.log("correct1")
                   app.extraDays = parseInt(d["medDate"])
                   if(app.extraDays < 0){
@@ -159,6 +159,26 @@ export class ExpirationdateComponent implements OnInit {
 
   navToContact(){
     this.router.navigate(["/contact"])
+  }
+
+  onChange($event){
+    this.expdate.medtype = $event.target.value
+    this.brands = []
+    this.expdate.medbrand = ""
+    
+    console.log("change type",$event.target.value)
+     this.db.list("medications").valueChanges()
+        .subscribe((snapshot)=>{
+          snapshot.forEach(element => {
+             const mObject = <any>element
+             console.log("mmt",mObject)
+             if(mObject.medType == $event.target.value){
+                this.brands.push(
+                  mObject.medBrand
+                )
+             }
+          })
+      })
   }
 
   logout(){

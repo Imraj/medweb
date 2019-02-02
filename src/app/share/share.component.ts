@@ -65,7 +65,7 @@ export class ShareComponent implements OnInit {
       .set("email3",email3)
       .set("from",user.email)
 
-      this.http.get("http://medexp.000webhostapp.com/share.php",{params})
+      this.http.get("http://www.medexpiration.com/share.php",{params})
       .subscribe(
         data => {
             this.loading = false

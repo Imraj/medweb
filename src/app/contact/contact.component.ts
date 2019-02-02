@@ -62,7 +62,7 @@ export class ContactComponent implements OnInit {
                                      .set("message",message)
                                      .set("from",from)
   
-      this.http.get("http://medexp.000webhostapp.com/contact.php",{params})
+      this.http.get("http://www.medexpiration.com/contact.php",{params})
           .subscribe(
             data => {
                this.loading = false

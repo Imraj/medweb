@@ -14,7 +14,7 @@
             <div class="col-11">
                 <label>Type</label>
                 <!-- <ng2-completer [(ngModel)]="expdate.medtype" name="type" [placeholder]="typeplaceholder" [datasource]="types" [minSearchLength]="1"></ng2-completer> -->
-                <select class="form-control">
+                <select class="form-control" (change)="onChange($event);">
                     <option *ngFor="let b of types" [value]="b">
                         {{b}}
                     </option>
